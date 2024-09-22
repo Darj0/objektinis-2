@@ -1,13 +1,14 @@
-
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <vector>
 #include <string>
+#include <algorithm>
 #include <numeric>
 #include <iomanip>
-#include <algorithm>
 #include <limits>
-
 using namespace std;
+
 
 struct Studentas {
     string vardas;
@@ -21,13 +22,14 @@ struct Studentas {
 void galutinis_balas_vid(vector<Studentas>& studentai);
 void galutinis_balas_med(vector<Studentas>& studentai);
 void print_results(const vector<Studentas>& studentai);
-void duomenys(vector<Studentas>& studentai);
-void skaityti(vector<Studentas>& studentai, string name);
 void patikrinimas(vector<Studentas>& studentai);
+void skaityti(vector<Studentas>& studentai, string name);
+void duomenys(vector<Studentas>& studentai);
 void sort_students(vector<Studentas>& studentai);
 bool compare_students(const Studentas& a, const Studentas& b);
 string capitalize(string var);
 string tolowers(string var);
+
 
 
 int main() {
@@ -78,8 +80,8 @@ int main() {
 }
 
 
-//---------------------------------------------------
 
+//---------------------------------------------------
 void galutinis_balas_vid(vector<Studentas>& studentai)
 {
     for (auto& student : studentai)
@@ -342,7 +344,7 @@ int studentuSkaicius;
 
 }
 
-//--------------------------------------------------------------
+//----------------------------------------------------
 void skaityti(vector<Studentas>& studentai, string name) {
     ifstream fin;
 
@@ -357,7 +359,7 @@ void skaityti(vector<Studentas>& studentai, string name) {
     } catch (const ifstream::failure& e) {
         cerr << "Nepavyko atidaryti failo: " << name << endl;
         cerr << "Klaida: " << e.what() << endl;
-        return;  
+        return;  // Если файл не открылся, нет смысла продолжать
     } catch (const runtime_error& e) {
         cerr << e.what() << endl;
         return;
@@ -470,6 +472,7 @@ void patikrinimas(vector<Studentas>& studentai)
 
 
 }
+
 //------------------------------------------------------
 bool compare_students(const Studentas& a, const Studentas& b) {
     if (a.pavarde == b.pavarde) {
@@ -482,4 +485,3 @@ bool compare_students(const Studentas& a, const Studentas& b) {
 void sort_students(vector<Studentas>& studentai) {
     sort(studentai.begin(), studentai.end(), compare_students);
 }
-
