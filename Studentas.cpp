@@ -276,7 +276,7 @@ void skaityti(vector<Studentas>& studentai, string name) {
     } catch (const ifstream::failure& e) {
         cerr << "Nepavyko atidaryti failo: " << name << endl;
         cerr << "Klaida: " << e.what() << endl;
-        return;  // Если файл не открылся, нет смысла продолжать
+        return; 
     } catch (const runtime_error& e) {
         cerr << e.what() << endl;
         return;
