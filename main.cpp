@@ -23,6 +23,7 @@ void galutinis_balas_med(vector<Studentas>& studentai);
 void print_results(const vector<Studentas>& studentai);
 void duomenys(vector<Studentas>& studentai);
 void skaityti(vector<Studentas>& studentai, string name);
+void patikrinimas(vector<Studentas>& studentai);
 string capitalize(string var);
 string tolowers(string var);
 
@@ -392,3 +393,42 @@ void skaityti(vector<Studentas>& studentai, string name) {
     }
 }
 
+
+//------------------------------------------------------
+void patikrinimas(vector<Studentas>& studentai)
+{
+
+
+
+    cout << left
+         << setw(15) << "Pavarde"
+         << setw(15) << "Vardas"
+         << setw(6)  << "ND1"
+         << setw(6)  << "ND2"
+         << setw(6)  << "ND3"
+         << setw(6)  << "ND4"
+         << setw(6)  << "ND5"
+         << setw(10) << "Egzaminas"
+         << endl;
+    cout << string(60, '-') << endl;
+
+
+    for (const auto& studentas : studentai) {
+        cout << left
+             << setw(15) << studentas.pavarde
+             << setw(15) << studentas.vardas;
+
+
+        for (const auto& pazymys : studentas.nd) {
+            cout << setw(6) << pazymys;
+        }
+
+
+        cout << setw(10) << studentas.egz << endl;
+    }
+
+
+
+
+
+}
