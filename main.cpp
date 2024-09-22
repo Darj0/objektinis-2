@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 void duomenys(vector<Studentas>& studentai);
+void galutinis_balas_vid(vector<Studentas>& studentai);
 
 struct Studentas {
     string vardas;
@@ -99,3 +100,24 @@ int studentuSkaicius;
                             break;
                         }
                     }
+
+   for (auto& studentas : studentai) {
+            galutinis_balas_vid(studentai);
+        }
+
+//-----------------------------------------------------
+void galutinis_balas_vid(vector<Studentas>& studentai)
+{
+    for (auto& student : studentai)
+    {
+        double suma = 0;
+        for (int nd : student.nd)
+        {
+            suma += nd;
+        }
+
+        double vidurkis_nd = suma / student.nd.size() ;
+        student.galutinis = (vidurkis_nd*0.4 + student.egz*0.6);
+    }
+}
+
