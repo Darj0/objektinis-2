@@ -24,6 +24,8 @@ void print_results(const vector<Studentas>& studentai);
 void duomenys(vector<Studentas>& studentai);
 void skaityti(vector<Studentas>& studentai, string name);
 void patikrinimas(vector<Studentas>& studentai);
+void sort_students(vector<Studentas>& studentai);
+bool compare_students(const Studentas& a, const Studentas& b);
 string capitalize(string var);
 string tolowers(string var);
 
@@ -53,6 +55,7 @@ int main() {
     if (pasirinkimas == 1)
     {
         duomenys(studentai);
+        sort_students(studentai);
         print_results(studentai);
     }
 
@@ -61,6 +64,7 @@ int main() {
         cout<<"Iveskyte failo kelia\n";
         cin >> name;
         skaityti(studentai, name);
+        sort_students(studentai);
         print_results(studentai);
        //patikrinimas(studentai);
 
@@ -466,3 +470,16 @@ void patikrinimas(vector<Studentas>& studentai)
 
 
 }
+//------------------------------------------------------
+bool compare_students(const Studentas& a, const Studentas& b) {
+    if (a.pavarde == b.pavarde) {
+        return a.vardas < b.vardas;
+    }
+    return a.pavarde < b.pavarde;
+}
+//--------------------------------------------------
+
+void sort_students(vector<Studentas>& studentai) {
+    sort(studentai.begin(), studentai.end(), compare_students);
+}
+
