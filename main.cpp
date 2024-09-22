@@ -49,7 +49,20 @@ int studentuSkaicius;
         cin >> naujasStudentas.pavarde;
         naujasStudentas.pavarde = capitalize(naujasStudentas.pavarde);
 
-        
+        string atsakymas;
+        cout << "Ar jau zinote kiek pazymiu noryte ivesti? ('Taip'  'Ne'  'G' - Generuoja pazymius)\n";
+        cin >> atsakymas;
+        atsakymas = tolowers(atsakymas);
+
+       while (atsakymas != "taip"  && atsakymas !=  "ne"&& atsakymas != "g" )
+        {
+        cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite 'Taip' arba 'Ne' arba 'G'): \n";
+        cin >> atsakymas;
+        atsakymas = tolowers(atsakymas);
+        }
+
+
+       if (atsakymas == "taip") {
         int nd_count;
         while (true) {
             cout << "Kiek namu darbu ivertinimu norite ivesti? \n";
@@ -87,7 +100,56 @@ int studentuSkaicius;
                 break;
             }
         }
-    
+    }
+
+        else if (atsakymas == "ne" )
+        {
+            cout << "Iveskite namu darbu ivertinimus (baigus iveskite '0'): \n" << endl;
+            int input;
+
+            while (true)
+            {
+                cin >> input;
+                if (cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite tik skaiciu): \n";
+                }
+
+                else if (input == 0)
+                {
+                break;
+                }
+                else if (input < 1 || input > 10)
+                {
+                    cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
+                }
+                else
+                {
+                naujasStudentas.nd.push_back(input);
+                }
+            }
+        }
+
+        else if (atsakymas == "g")
+        {
+            int nd_count = rand() % 5 + 3;
+            cout << "Generuojami " << nd_count << " namu darbu ivertinimai: ";
+            for (int j = 0; j < nd_count; j++) {
+                int nd_verte = rand() % 10 + 1;
+                naujasStudentas.nd.push_back(nd_verte);
+                cout << nd_verte << " ";
+            }
+            cout << endl;
+
+            naujasStudentas.egz = rand() % 10 + 1;
+            cout << "Generuojamas egzamino ivertinimas: " << naujasStudentas.egz << endl;
+        }
+
+
+        if  (atsakymas != "g")
+        {
             cout << "Iveskite egzamino ivertinima: ";
             while (true)
                     {
@@ -105,9 +167,20 @@ int studentuSkaicius;
                         }
                     }
 
-   for (auto& studentas : studentai) {
-            galutinis_balas_vid(studentai);
         }
+        else{}
+
+     
+
+
+    }
+
+
+   for (auto& studentas : studentai) {
+       
+            galutinis_balas_vid(studentai);
+        } 
+}
 
 //-----------------------------------------------------
 void galutinis_balas_vid(vector<Studentas>& studentai)
