@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1726993299 source:f:\documents\_dasha\vu\2_kursas\c++\v0.1\main.cpp
+	"Mylib.h"
+	"Studentas.h"
+
+1726932672 f:\documents\_dasha\vu\2_kursas\c++\v0.1\mylib.h
+	<iostream>
+	<fstream>
+	<sstream>
+	<vector>
+	<string>
+	<algorithm>
+	<numeric>
+	<iomanip>
+	<limits>
+
+1726933131 f:\documents\_dasha\vu\2_kursas\c++\v0.1\studentas.h
+	"Mylib.h"
+
+1727011497 source:f:\documents\_dasha\vu\2_kursas\c++\v0.1\studentas.cpp
+	"Studentas.h"
+
