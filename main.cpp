@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -187,6 +188,7 @@ int studentuSkaicius;
                     while (true)
                     {
                         cin >> nd_verte;
+
                         if (cin.fail()) {
                             cin.clear();
                             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -208,6 +210,7 @@ int studentuSkaicius;
         {
             cout << "Iveskite namu darbu ivertinimus (baigus iveskite '0'): \n" << endl;
             int input;
+
             while (true)
             {
                 cin >> input;
@@ -217,13 +220,14 @@ int studentuSkaicius;
                     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite tik skaiciu): \n";
                 }
-                else if (input < 1 || input > 10)
-                {
-                    cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
-                }
+
                 else if (input == 0)
                 {
                 break;
+                }
+                else if (input < 1 || input > 10)
+                {
+                    cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
                 }
                 else
                 {
@@ -254,6 +258,7 @@ int studentuSkaicius;
             while (true)
                     {
                         cin >> naujasStudentas.egz;
+
                         if (cin.fail()) {
                             cin.clear();
                             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -265,6 +270,7 @@ int studentuSkaicius;
                             break;
                         }
                     }
+
         }
         else{}
 
