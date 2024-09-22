@@ -3,6 +3,8 @@ using namespace std;
 void duomenys(vector<Studentas>& studentai);
 void galutinis_balas_vid(vector<Studentas>& studentai);
 void print_results(const vector<Studentas>& studentai);
+string capitalize(string var);
+string tolowers(string var);
 
 struct Studentas {
     string vardas;
@@ -138,3 +140,24 @@ cout << left << setw(15) << "Pavarde"
          
     }
   }
+//---------------------------------------------------
+    string capitalize(string var)
+    {
+    if (!var.empty()) {
+        var[0] = toupper(var[0]);
+        for (size_t i = 1; i < var.length(); ++i) {
+            var[i] = tolower(var[i]);
+        }
+    }
+    return var;
+    }
+//----------------------------------------------------------------------------
+    string tolowers(string var)
+    {
+    if (!var.empty()) {
+          for (size_t i = 0; i < var.length(); ++i) {
+            var[i] = tolower(var[i]);
+        }
+    }
+    return var;
+    }
