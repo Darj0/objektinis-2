@@ -22,6 +22,7 @@ void galutinis_balas_vid(vector<Studentas>& studentai);
 void galutinis_balas_med(vector<Studentas>& studentai);
 void print_results(const vector<Studentas>& studentai);
 void duomenys(vector<Studentas>& studentai);
+void skaityti(vector<Studentas>& studentai, string name);
 string capitalize(string var);
 string tolowers(string var);
 
@@ -301,3 +302,93 @@ int studentuSkaicius;
     }
 
 }
+
+//--------------------------------------------------------------
+void skaityti(vector<Studentas>& studentai, string name) {
+    ifstream fin;
+
+
+
+
+    try {
+        fin.open(name);
+        if (!fin.is_open()) {
+            throw runtime_error("Nepavyko atidaryti failo.");
+        }
+    } catch (const ifstream::failure& e) {
+        cerr << "Nepavyko atidaryti failo: " << name << endl;
+        cerr << "Klaida: " << e.what() << endl;
+        return;  
+    } catch (const runtime_error& e) {
+        cerr << e.what() << endl;
+        return;
+    }
+
+
+
+    try {
+
+        string ignore;
+        getline(fin, ignore);
+        string line;
+
+
+        while (getline(fin, line)) {
+            istringstream iss(line);
+            Studentas stud;
+            string vardas, pavarde;
+
+            if (!(iss >> vardas >> pavarde)) {
+                cerr << "Klaida skaitant vardą ir pavardę." << endl;
+                continue;
+            }
+
+            stud.vardas = vardas;
+            stud.pavarde = pavarde;
+
+            int pazymys;
+            vector<int> pazymiai;
+            while (iss >> pazymys) {
+                pazymiai.push_back(pazymys);
+            }
+
+            if (!pazymiai.empty()) {
+                stud.egz = pazymiai.back();
+                pazymiai.pop_back();
+                stud.nd = pazymiai;
+            }
+
+            studentai.push_back(stud);
+        }
+
+        fin.close();
+    } catch (const ifstream::failure& e) {
+        cerr << "Nepavyko nuskaityti failo: " << e.what() << endl;
+        cerr << "Klaida: " << e.what() << endl;
+
+
+    }
+
+    cout << "Galutinio balo skaiciavimui norite naudoti vidurki ar mediana? (Iveskite 'vid' arba 'med'  )" << endl;
+
+    string reikalavimas;
+    cin >> reikalavimas;
+    reikalavimas = tolowers(reikalavimas);
+
+    while (reikalavimas != "vid" && reikalavimas != "med") {
+        cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite vid arba med): ";
+        cin >> reikalavimas;
+        reikalavimas = tolowers(reikalavimas);
+    }
+
+    for (auto& studentas : studentai) {
+        studentas.reikalavimas = reikalavimas;
+    }
+
+    if (reikalavimas == "vid") {
+        galutinis_balas_vid(studentai);
+    } else if (reikalavimas == "med") {
+        galutinis_balas_med(studentai);
+    }
+}
+
