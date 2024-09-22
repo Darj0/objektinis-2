@@ -2,6 +2,7 @@
 using namespace std;
 void duomenys(vector<Studentas>& studentai);
 void galutinis_balas_vid(vector<Studentas>& studentai);
+void print_results(const vector<Studentas>& studentai);
 
 struct Studentas {
     string vardas;
@@ -15,6 +16,7 @@ int main()
 {
   vector<Studentas> studentai;
   duomenys(studentai);
+  print_results(studentai);
   return 0;
 }
 //--------------------------------------------
@@ -120,4 +122,19 @@ void galutinis_balas_vid(vector<Studentas>& studentai)
         student.galutinis = (vidurkis_nd*0.4 + student.egz*0.6);
     }
 }
+//----------------------------------------------------
+void print_results(const vector<Studentas>& studentai)
+{
+cout << left << setw(15) << "Pavarde"
+<< setw(15) << "Vardas"
+<< setw(30) << "Galutinis (Vid.) " << endl;
+    cout<< "----------------------------------------------------------------"<<endl;
 
+     for (const auto& studentas : studentai) {
+     
+            cout << left << setw(15) << studentas.pavarde
+<< setw(15) << studentas.vardas
+<< setw(18) << fixed << setprecision(2) << studentas.galutinis << "-----" << endl;
+         
+    }
+  }
