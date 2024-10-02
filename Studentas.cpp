@@ -276,7 +276,7 @@ void skaityti(vector<Studentas>& studentai, string name) {
     } catch (const ifstream::failure& e) {
         cerr << "Nepavyko atidaryti failo: " << name << endl;
         cerr << "Klaida: " << e.what() << endl;
-        return; 
+        return;
     } catch (const runtime_error& e) {
         cerr << e.what() << endl;
         return;
@@ -409,4 +409,38 @@ string generuoti_varda(int indeksas) {
 //---------------------------------------------------------
 string generuoti_pavarde(int indeksas) {
     return "Pavarde" + to_string(indeksas);
+}
+//------------------------------------------------------
+void generuoti_sarasus(int n, vector<Studentas>& studentai, string reikalavimas_vid_med)
+{
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 10);
+
+    for (int i = 0; i < n; ++i) {
+        Studentas naujasStudentas;
+        naujasStudentas.vardas = generuoti_varda(i + 1);
+        naujasStudentas.pavarde = generuoti_pavarde(i + 1);
+
+        int nd_kiekis = 5;
+        for (int j = 0; j < nd_kiekis; ++j) {
+            naujasStudentas.nd.push_back(dist(gen));
+        }
+
+        naujasStudentas.egz = dist(gen);
+
+        naujasStudentas.reikalavimas =  reikalavimas_vid_med;
+
+        studentai.push_back(naujasStudentas);
+    }
+
+    for (auto& studentas : studentai) {
+        if (studentas.reikalavimas == "vid") {
+            galutinis_balas_vid(studentai); 
+        } else if (studentas.reikalavimas == "med") {
+            galutinis_balas_med(studentai); 
+        }
+    }
+
+
 }
