@@ -402,3 +402,11 @@ bool compare_students(const Studentas& a, const Studentas& b) {
 void sort_students(vector<Studentas>& studentai) {
     sort(studentai.begin(), studentai.end(), compare_students);
 }
+//---------------------------------------------------------
+string generuoti_varda(int indeksas) {
+    return "Vardas" + to_string(indeksas);
+}
+//---------------------------------------------------------
+string generuoti_pavarde(int indeksas) {
+    return "Pavarde" + to_string(indeksas);
+}
