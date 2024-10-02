@@ -21,6 +21,8 @@ void sort_students(vector<Studentas>& studentai);
 bool compare_students(const Studentas& a, const Studentas& b);
 string capitalize(string var);
 string tolowers(string var);
+string generuoti_varda(int indeksas);
+string generuoti_pavarde(int indeksas);
 
 
 #endif // STUDENTAS_H_INCLUDED
