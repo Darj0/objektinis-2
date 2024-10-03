@@ -84,7 +84,7 @@ cout << left << setw(15) << "Pavarde"
     return var;
     }
 
-//---------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 void duomenys(vector<Studentas>& studentai)
 {
 
@@ -297,7 +297,7 @@ void skaityti(vector<Studentas>& studentai, string name) {
             string vardas, pavarde;
 
             if (!(iss >> vardas >> pavarde)) {
-                cerr << "Klaida skaitant vardą ir pavardę." << endl;
+                cerr << " " << endl;
                 continue;
             }
 
@@ -401,46 +401,4 @@ bool compare_students(const Studentas& a, const Studentas& b) {
 
 void sort_students(vector<Studentas>& studentai) {
     sort(studentai.begin(), studentai.end(), compare_students);
-}
-//---------------------------------------------------------
-string generuoti_varda(int indeksas) {
-    return "Vardas" + to_string(indeksas);
-}
-//---------------------------------------------------------
-string generuoti_pavarde(int indeksas) {
-    return "Pavarde" + to_string(indeksas);
-}
-//------------------------------------------------------
-void generuoti_sarasus(int n, vector<Studentas>& studentai, string reikalavimas_vid_med)
-{
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<> dist(1, 10);
-
-    for (int i = 0; i < n; ++i) {
-        Studentas naujasStudentas;
-        naujasStudentas.vardas = generuoti_varda(i + 1);
-        naujasStudentas.pavarde = generuoti_pavarde(i + 1);
-
-        int nd_kiekis = 5;
-        for (int j = 0; j < nd_kiekis; ++j) {
-            naujasStudentas.nd.push_back(dist(gen));
-        }
-
-        naujasStudentas.egz = dist(gen);
-
-        naujasStudentas.reikalavimas =  reikalavimas_vid_med;
-
-        studentai.push_back(naujasStudentas);
-    }
-
-    for (auto& studentas : studentai) {
-        if (studentas.reikalavimas == "vid") {
-            galutinis_balas_vid(studentai); 
-        } else if (studentas.reikalavimas == "med") {
-            galutinis_balas_med(studentai); 
-        }
-    }
-
-
 }
