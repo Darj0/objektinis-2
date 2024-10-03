@@ -1,6 +1,6 @@
 #include "Mylib.h"
 #include "Studentas.h"
-
+#include "Failai.h"
 
 
 
@@ -9,7 +9,7 @@ int main() {
     int pasirinkimas;
     string name;
     while (true) {
-        cout << "Norite ivesti studentus(spauskite 1), nuskaityti is failo(spauskite 2) ar generuoti studentu sarasus (spauskite 3)?\n";
+        cout << "Norite ivesti studentus(spauskite 1), nuskaityti is failo(spauskite 2)\n ar stebeti failu nuskaitimo ir kurimo spartuma (spauskite 3)?\n";
         cin >> pasirinkimas;
         if (cin.fail()) {
             cin.clear();
@@ -47,13 +47,47 @@ int main() {
     else
     {
         int n = 5;
-        generuoti_sarasus(n, studentai);
-        cout << "Sugeneruoti 5 failai: \n";
-        cout << "studentai_1000.txt \n";
-        cout << "studentai_10000.txt \n";
-        cout << "studentai_100000.txt \n";
-        cout << "studentai_1000000.txt \n";
-        cout << "studentai_10000000.txt \n";
+        int n1 = 1000;
+        int n2 = 10000;
+        int n3 = 100000;
+        int n4 = 1000000;
+        int n5 = 10000000;
+        string g_s = "";
+        cout <<"Norite generuoti naujus failus (spauskite 'g') ar nauduotis sukurtais (spauskite 's')"<<endl;
+        cin >> g_s;
+        while (g_s != "g"  && g_s !=  "s" )
+        {
+        cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite 'g' arba 's'): \n";
+        cin >> g_s;
+        g_s = tolowers(g_s);
+        }
+
+        if (g_s =="g")
+        {
+            cout << "Sugeneruoti failai: \n";
+            generuoti_sarasus(n1, studentai);
+            kurti_faila(studentai, "1000");
+            cout << "studentai_1000.txt \n";
+            generuoti_sarasus(n2, studentai);
+            kurti_faila(studentai, "10000");
+            cout << "studentai_10000.txt \n";
+            generuoti_sarasus(n3, studentai);
+            kurti_faila(studentai, "100000");
+            cout << "studentai_100000.txt \n";
+            generuoti_sarasus(n4, studentai);
+            kurti_faila(studentai, "1000000");
+            cout << "studentai_1000000.txt \n";
+            generuoti_sarasus(n5, studentai);
+            kurti_faila(studentai, "10000000");
+            cout << "studentai_10000000.txt \n";
+        }
+        cout << "Atliekama failu analize: \n";
+        darbas_su_failais(studentai , "studentai_1000.txt", n1);
+        darbas_su_failais(studentai , "studentai_10000.txt", n2);
+        darbas_su_failais(studentai , "studentai_100000.txt", n3);
+        darbas_su_failais(studentai , "studentai_1000000.txt", n4);
+        darbas_su_failais(studentai , "studentai_10000000.txt", n5);
+
 
     }
 
