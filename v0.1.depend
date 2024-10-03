@@ -20,3 +20,35 @@
 1727011497 source:f:\documents\_dasha\vu\2_kursas\c++\v0.1\studentas.cpp
 	"Studentas.h"
 
+1727888377 source:c:\users\baran\documents\objektinis-programavimas-0.1\studentas.cpp
+	"Studentas.h"
+
+1727888243 c:\users\baran\documents\objektinis-programavimas-0.1\studentas.h
+	"Mylib.h"
+
+1727881656 c:\users\baran\documents\objektinis-programavimas-0.1\mylib.h
+	<iostream>
+	<fstream>
+	<sstream>
+	<vector>
+	<string>
+	<algorithm>
+	<numeric>
+	<iomanip>
+	<limits>
+	<random>
+	<chrono>
+
+1727888377 source:c:\users\baran\documents\objektinis-programavimas-0.1\main.cpp
+	"Mylib.h"
+	"Studentas.h"
+	"Failai.h"
+
+1727888428 c:\users\baran\documents\objektinis-programavimas-0.1\failai.h
+	"Mylib.h"
+	"Studentas.h"
+
+1727888375 source:c:\users\baran\documents\objektinis-programavimas-0.1\failai.cpp
+	"Failai.h"
+	"Studentas.h"
+
