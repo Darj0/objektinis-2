@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/v0.1" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/v0" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/v0.1" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/v0" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Failai.cpp" />
+		<Unit filename="Failai.h" />
 		<Unit filename="Mylib.h" />
 		<Unit filename="Studentas.cpp" />
 		<Unit filename="Studentas.h" />
