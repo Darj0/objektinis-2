@@ -14,10 +14,10 @@ void generuoti_sarasus(int n, vector<Studentas>& studentai)
     mt19937 gen(rd());
     uniform_int_distribution<> dist(1, 10);
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 1; i < n; ++i) {
         Studentas naujasStudentas;
-        naujasStudentas.vardas = generuoti_varda(i + 1);
-        naujasStudentas.pavarde = generuoti_pavarde(i + 1);
+        naujasStudentas.vardas = generuoti_varda(i );
+        naujasStudentas.pavarde = generuoti_pavarde(i );
 
         int nd_kiekis = 5;
         for (int j = 0; j < nd_kiekis; ++j) {
@@ -80,43 +80,50 @@ void rusiavimas_2_grupes(const vector<Studentas>& studentai, vector<Studentas>& 
 }
 
 //-----------------------------------------------
-void darbas_su_failais(vector<Studentas>& studentai, string failas, int duom_sk)
+void darbas_su_failais( string failas, int duom_sk)
 {
+    vector<Studentas> studentai;
 
-    auto start_read = std::chrono::high_resolution_clock::now();
+    auto start_read = chrono::high_resolution_clock::now();
     skaityti(studentai, failas);
-    auto end_read = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration_read = end_read - start_read;
-    std::cout << "Failo is " <<duom_sk <<" duomenu nuskaitimo laikas: " << duration_read.count() << " sek" << std::endl;
+    auto end_read = chrono::high_resolution_clock::now();
+    chrono::duration<double> duration_read = end_read - start_read;
+    cout << "Failo is " <<duom_sk <<" duomenu nuskaitimo laikas: " << duration_read.count() << " sek" << endl;
 
-    auto start_sort = std::chrono::high_resolution_clock::now();
+    auto start_sort = chrono::high_resolution_clock::now();
     sort_students(studentai);
-    auto end_sort = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration_sort = end_sort - start_sort;
-    std::cout << duom_sk <<" studentu rusiavimo laikas: " << duration_sort.count() << " sek" << std::endl;
+    auto end_sort = chrono::high_resolution_clock::now();
+    chrono::duration<double> duration_sort = end_sort - start_sort;
+    cout << duom_sk <<" studentu rusiavimo laikas: " << duration_sort.count() << " sek" << endl;
 
 
     vector<Studentas> vargsiukai;
     vector<Studentas> kietiakiai;
-    auto start_split = std::chrono::high_resolution_clock::now();
+    auto start_split = chrono::high_resolution_clock::now();
     rusiavimas_2_grupes(studentai, vargsiukai, kietiakiai);
-    auto end_split = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration_split = end_split - start_split;
-    std::cout << duom_sk <<" studentu skirstymo i 2 grupes laikas: " << duration_split.count() << " sek" << std::endl;
+    auto end_split = chrono::high_resolution_clock::now();
+    chrono::duration<double> duration_split = end_split - start_split;
+    cout << duom_sk <<" studentu skirstymo i 2 grupes laikas: " << duration_split.count() << " sek" << endl;
 
 
-    auto start_protingi = std::chrono::high_resolution_clock::now();
+    auto start_protingi = chrono::high_resolution_clock::now();
     surusioti_failai(kietiakiai, "protingi_" + to_string(duom_sk) +".txt");
-    auto end_protingi = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration_protingi = end_protingi - start_protingi;
-    std::cout << duom_sk <<" protingu studentu irasimo i faila laikas: " << duration_protingi.count() << " sek" << std::endl;
+    auto end_protingi = chrono::high_resolution_clock::now();
+    chrono::duration<double> duration_protingi = end_protingi - start_protingi;
+    cout << duom_sk <<" protingu studentu irasimo i faila laikas: " << duration_protingi.count() << " sek" << endl;
 
 
-    auto start_nelaimingi = std::chrono::high_resolution_clock::now();
+    auto start_nelaimingi = chrono::high_resolution_clock::now();
     surusioti_failai(vargsiukai, "nelaimingi_" + to_string(duom_sk) +".txt");
-    auto end_nelaimingi = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration_nelaimingi = end_nelaimingi - start_nelaimingi;
-    std::cout << duom_sk <<" nelaimingu studentu irasimo i faila laikas: " << duration_nelaimingi.count() << " sek" << std::endl;
+    auto end_nelaimingi =chrono::high_resolution_clock::now();
+    chrono::duration<double> duration_nelaimingi = end_nelaimingi - start_nelaimingi;
+    cout << duom_sk <<" nelaimingu studentu irasimo i faila laikas: " << duration_nelaimingi.count() << " sek" << endl;
+
+    cout <<"Bendras laikas: "<< duration_read.count() + duration_sort.count()+ duration_split.count()+duration_protingi.count()+duration_nelaimingi.count()<<endl;
+
+    vargsiukai.clear();
+    kietiakiai.clear();
+    studentai.clear();
 }
 
 //--------------------------------------------------------------
