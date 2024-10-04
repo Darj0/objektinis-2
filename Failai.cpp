@@ -83,7 +83,7 @@ void rusiavimas_2_grupes(const vector<Studentas>& studentai, vector<Studentas>& 
 }
 
 //-----------------------------------------------
-void darbas_su_failais( string failas, int duom_sk)
+void darbas_su_failais(string failas, int duom_sk, string reikalavimas)
 {
     vector<Studentas> studentai;
 
@@ -91,14 +91,28 @@ void darbas_su_failais( string failas, int duom_sk)
     skaityti(studentai, failas);
     auto end_read = chrono::high_resolution_clock::now();
     chrono::duration<double> duration_read = end_read - start_read;
-    cout << "Failo is " <<duom_sk <<" duomenu nuskaitimo laikas: " << duration_read.count() << " sek" << endl;
+    cout << "Failo is " << duom_sk << " duomenu nuskaitimo laikas: " << duration_read.count() << " sek" << endl;
 
-    auto start_sort = chrono::high_resolution_clock::now();
-    sort_students(studentai);
-    auto end_sort = chrono::high_resolution_clock::now();
-    chrono::duration<double> duration_sort = end_sort - start_sort;
-    cout << duom_sk <<" studentu rusiavimo laikas: " << duration_sort.count() << " sek" << endl;
+    // Объявляем переменную duration_sort вне условий
+    chrono::duration<double> duration_sort;
 
+    if (reikalavimas == "v")
+    {
+        auto start_sort = chrono::high_resolution_clock::now();
+        sort_students_by_name(studentai);
+        auto end_sort = chrono::high_resolution_clock::now();
+        duration_sort = end_sort - start_sort;
+    }
+    else
+    {
+        auto start_sort = chrono::high_resolution_clock::now();
+        sort_students_by_surname(studentai);
+        auto end_sort = chrono::high_resolution_clock::now();
+        duration_sort = end_sort - start_sort;
+    }
+
+    // Теперь можем использовать duration_sort
+    cout << duom_sk << " studentu rusiavimo laikas: " << duration_sort.count() << " sek" << endl;
 
     vector<Studentas> vargsiukai;
     vector<Studentas> kietiakiai;
@@ -106,28 +120,27 @@ void darbas_su_failais( string failas, int duom_sk)
     rusiavimas_2_grupes(studentai, vargsiukai, kietiakiai);
     auto end_split = chrono::high_resolution_clock::now();
     chrono::duration<double> duration_split = end_split - start_split;
-    cout << duom_sk <<" studentu skirstymo i 2 grupes laikas: " << duration_split.count() << " sek" << endl;
-
+    cout << duom_sk << " studentu skirstymo i 2 grupes laikas: " << duration_split.count() << " sek" << endl;
 
     auto start_protingi = chrono::high_resolution_clock::now();
-    surusioti_failai(kietiakiai, "protingi_" + to_string(duom_sk) +".txt");
+    surusioti_failai(kietiakiai, "protingi_" + to_string(duom_sk) + ".txt");
     auto end_protingi = chrono::high_resolution_clock::now();
     chrono::duration<double> duration_protingi = end_protingi - start_protingi;
-    cout << duom_sk <<" protingu studentu irasimo i faila laikas: " << duration_protingi.count() << " sek" << endl;
-
+    cout << duom_sk << " protingu studentu irasimo i faila laikas: " << duration_protingi.count() << " sek" << endl;
 
     auto start_nelaimingi = chrono::high_resolution_clock::now();
-    surusioti_failai(vargsiukai, "nelaimingi_" + to_string(duom_sk) +".txt");
-    auto end_nelaimingi =chrono::high_resolution_clock::now();
+    surusioti_failai(vargsiukai, "nelaimingi_" + to_string(duom_sk) + ".txt");
+    auto end_nelaimingi = chrono::high_resolution_clock::now();
     chrono::duration<double> duration_nelaimingi = end_nelaimingi - start_nelaimingi;
-    cout << duom_sk <<" nelaimingu studentu irasimo i faila laikas: " << duration_nelaimingi.count() << " sek" << endl;
+    cout << duom_sk << " nelaimingu studentu irasimo i faila laikas: " << duration_nelaimingi.count() << " sek" << endl;
 
-    cout <<"Bendras laikas: "<< duration_read.count() + duration_sort.count()+ duration_split.count()+duration_protingi.count()+duration_nelaimingi.count()<<" sek"<<endl;
+    cout << "Bendras laikas: " << duration_read.count() + duration_sort.count() + duration_split.count() + duration_protingi.count() + duration_nelaimingi.count() << " sek" << endl;
 
     vargsiukai.clear();
     kietiakiai.clear();
     studentai.clear();
 }
+
 
 //--------------------------------------------------------------
 void surusioti_failai(vector<Studentas>& studentai, string name)
@@ -146,4 +159,23 @@ void surusioti_failai(vector<Studentas>& studentai, string name)
              << setw(20) << studentas.vardas << setw(10) << studentas.galutinis << endl;
         }
    failas.close();
+}
+//-----------------------------------------------------------
+bool compare_by_name(const Studentas& a, const Studentas& b) {
+    return a.vardas < b.vardas;
+}
+//--------------------------------------------------
+
+void sort_students_by_name(vector<Studentas>& studentai) {
+    sort(studentai.begin(), studentai.end(), compare_by_name);
+}
+
+//-----------------------------------------------------
+bool compare_by_surname(const Studentas& a, const Studentas& b) {
+    return a.pavarde < b.pavarde;
+}
+//--------------------------------------------------
+
+void sort_students_by_surname(vector<Studentas>& studentai) {
+    sort(studentai.begin(), studentai.end(), compare_by_surname);
 }
