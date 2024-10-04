@@ -10,6 +10,9 @@ string generuoti_pavarde(int indeksas) {
 //------------------------------------------------------
 void generuoti_sarasus(int n, vector<Studentas>& studentai)
 {
+
+
+
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> dist(1, 10);
@@ -119,7 +122,7 @@ void darbas_su_failais( string failas, int duom_sk)
     chrono::duration<double> duration_nelaimingi = end_nelaimingi - start_nelaimingi;
     cout << duom_sk <<" nelaimingu studentu irasimo i faila laikas: " << duration_nelaimingi.count() << " sek" << endl;
 
-    cout <<"Bendras laikas: "<< duration_read.count() + duration_sort.count()+ duration_split.count()+duration_protingi.count()+duration_nelaimingi.count()<<endl;
+    cout <<"Bendras laikas: "<< duration_read.count() + duration_sort.count()+ duration_split.count()+duration_protingi.count()+duration_nelaimingi.count()<<" sek"<<endl;
 
     vargsiukai.clear();
     kietiakiai.clear();
