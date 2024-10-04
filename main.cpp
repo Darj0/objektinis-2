@@ -8,6 +8,8 @@ int main() {
     vector<Studentas> studentai;
     int pasirinkimas;
     string name;
+
+
     while (true) {
         cout << "Norite ivesti studentus(spauskite 1), nuskaityti is failo(spauskite 2)\n ar stebeti failu nuskaitimo ir kurimo spartuma (spauskite 3)?\n";
         cin >> pasirinkimas;
@@ -46,7 +48,6 @@ int main() {
 
     else
     {
-        int n = 5;
         int n1 = 1000;
         int n2 = 10000;
         int n3 = 100000;
@@ -81,12 +82,13 @@ int main() {
             kurti_faila(studentai, "10000000");
             cout << "studentai_10000000.txt \n";
         }
-        cout << "Atliekama failu analize: \n";
-        darbas_su_failais(studentai , "studentai_1000.txt", n1);
-        darbas_su_failais(studentai , "studentai_10000.txt", n2);
-        darbas_su_failais(studentai , "studentai_100000.txt", n3);
-        darbas_su_failais(studentai , "studentai_1000000.txt", n4);
-        darbas_su_failais(studentai , "studentai_10000000.txt", n5);
+
+        cout << "\nAtliekama failu analize: \n";
+        darbas_su_failais( "studentai_1000.txt", n1);
+        darbas_su_failais("studentai_10000.txt", n2);
+        darbas_su_failais("studentai_100000.txt", n3);
+        darbas_su_failais( "studentai_1000000.txt", n4);
+        darbas_su_failais( "studentai_10000000.txt", n5);
 
 
     }
