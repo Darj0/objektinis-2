@@ -83,17 +83,17 @@ void rusiavimas_2_grupes(const vector<Studentas>& studentai, vector<Studentas>& 
 }
 
 //-----------------------------------------------
-void darbas_su_failais(string failas, int duom_sk, string reikalavimas)
+void darbas_su_failais(string failas, int duom_sk, string reikalavimas, string kriterijus)
 {
     vector<Studentas> studentai;
 
     auto start_read = chrono::high_resolution_clock::now();
-    skaityti(studentai, failas);
+    skaityti(studentai, failas, kriterijus);
     auto end_read = chrono::high_resolution_clock::now();
     chrono::duration<double> duration_read = end_read - start_read;
     cout << "Failo is " << duom_sk << " duomenu nuskaitimo laikas: " << duration_read.count() << " sek" << endl;
 
-    // Объявляем переменную duration_sort вне условий
+
     chrono::duration<double> duration_sort;
 
     if (reikalavimas == "v")
@@ -103,7 +103,7 @@ void darbas_su_failais(string failas, int duom_sk, string reikalavimas)
         auto end_sort = chrono::high_resolution_clock::now();
         duration_sort = end_sort - start_sort;
     }
-    else
+    else if (reikalavimas == "p")
     {
         auto start_sort = chrono::high_resolution_clock::now();
         sort_students_by_surname(studentai);
@@ -111,7 +111,15 @@ void darbas_su_failais(string failas, int duom_sk, string reikalavimas)
         duration_sort = end_sort - start_sort;
     }
 
-    // Теперь можем использовать duration_sort
+    else
+    {
+        auto start_sort = chrono::high_resolution_clock::now();
+        sort_students_by_grade(studentai);
+        auto end_sort = chrono::high_resolution_clock::now();
+        duration_sort = end_sort - start_sort;
+    }
+
+
     cout << duom_sk << " studentu rusiavimo laikas: " << duration_sort.count() << " sek" << endl;
 
     vector<Studentas> vargsiukai;
@@ -178,4 +186,13 @@ bool compare_by_surname(const Studentas& a, const Studentas& b) {
 
 void sort_students_by_surname(vector<Studentas>& studentai) {
     sort(studentai.begin(), studentai.end(), compare_by_surname);
+}
+//-----------------------------------------------------------
+bool compare_by_grade(const Studentas& a, const Studentas& b) {
+    return a.galutinis < b.galutinis;
+}
+//--------------------------------------------------
+
+void sort_students_by_grade(vector<Studentas>& studentai) {
+    sort(studentai.begin(), studentai.end(), compare_by_grade);
 }
