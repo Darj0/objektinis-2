@@ -262,7 +262,7 @@ int studentuSkaicius;
 }
 
 //----------------------------------------------------
-void skaityti(vector<Studentas>& studentai, string name) {
+void skaityti(vector<Studentas>& studentai, string name, string kriterijus) {
     ifstream fin;
 
 
@@ -326,18 +326,8 @@ void skaityti(vector<Studentas>& studentai, string name) {
 
 
     }
+    string reikalavimas = kriterijus;
 
-    cout << "Galutinio balo skaiciavimui norite naudoti vidurki ar mediana? (Iveskite 'vid' arba 'med'  )" << endl;
-
-    string reikalavimas;
-    cin >> reikalavimas;
-    reikalavimas = tolowers(reikalavimas);
-
-    while (reikalavimas != "vid" && reikalavimas != "med") {
-        cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite vid arba med): ";
-        cin >> reikalavimas;
-        reikalavimas = tolowers(reikalavimas);
-    }
 
     for (auto& studentas : studentai) {
         studentas.reikalavimas = reikalavimas;
