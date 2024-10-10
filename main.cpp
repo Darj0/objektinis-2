@@ -42,6 +42,7 @@ int main() {
             reikalavimas = tolowers(reikalavimas);
         }
         skaityti(studentai, name, reikalavimas);
+        //patikrinimas(studentai);
         sort_students(studentai);
         print_results(studentai);
     }
@@ -99,12 +100,12 @@ int main() {
         }
 
         string krit = "";
-        cout << "Norite naudoti mediana ar vidurki? (mediana - 'm', vidurkis - 'v')" << endl;
+        cout << "Norite naudoti mediana ar vidurki? (mediana - 'med', vidurkis - 'vid')" << endl;
         cin >> krit;
         krit = tolowers(krit);
 
-        while (krit != "m" && krit != "v") {
-            cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite m arba v): ";
+        while (krit != "med" && krit != "vid") {
+            cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite med arba vid): ";
             cin >> krit;
             krit = tolowers(krit);
         }
