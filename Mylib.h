@@ -1,10 +1,19 @@
 #ifndef MYLIB_H_INCLUDED
 #define MYLIB_H_INCLUDED
 
+#include <cstdio>
+#include <memory>
+#include <stdexcept>
+#include <array>
+#include <windows.h>
+
+
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <list>
 #include <string>
 #include <algorithm>
 #include <numeric>
