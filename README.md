@@ -96,3 +96,7 @@ Failo is 10000000 duomenu nuskaitimo laikas: 41.7589 sek
 10000000 protingu studentu irasimo i faila laikas: 23.5938 sek  
 10000000 nelaimingu studentu irasimo i faila laikas: 17.3467 sek  
 Bendras laikas: 125.133 sek  
+
+
+<img src="https://github.com/user-attachments/assets/5f020520-7fa4-4e14-818b-8bcff8c407ea" alt="image" width="300"/>
+
