@@ -4,12 +4,13 @@
 
 int main() {
     vector<Studentas> studentai;
+    list<Studentas> studentai_list;
     int pasirinkimas;
     string name;
     string reikalavimas;
 
     while (true) {
-        cout << "Norite ivesti studentus(spauskite 1), nuskaityti is failo(spauskite 2)\n ar stebeti failu nuskaitimo ir kurimo spartuma (spauskite 3)?\n";
+        cout << "Norite ivesti studentus(spauskite 1), nuskaityti is failo(spauskite 2)\nar stebeti failu nuskaitimo ir kurimo spartuma (spauskite 3)?\n";
         cin >> pasirinkimas;
         if (cin.fail()) {
             cin.clear();
@@ -25,9 +26,30 @@ int main() {
     }
 
     if (pasirinkimas == 1) {
-        duomenys(studentai);
-        sort_students(studentai);
-        print_results(studentai);
+        string lv;
+        cout << "Norite ivesti studentus naudodami list (spauskite l) arba vector (spauskite v)?\n";
+        cin >> lv;
+           while (lv != "l" && lv != "v") {
+            cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite l arba v): ";
+            cin >> lv;
+            lv = tolowers(lv);
+           }
+
+        if (lv == "v")
+        {
+            duomenys(studentai);
+            sort_students(studentai);
+            print_results(studentai);
+        }
+
+        else
+        {
+            duomenys_list(studentai_list);
+            sort_students_by_name_list(studentai_list);
+            print_results_list(studentai_list);
+        }
+
+
     }
     else if (pasirinkimas == 2) {
         cout << "Iveskyte failo kelia\n";
@@ -109,14 +131,56 @@ int main() {
             cin >> krit;
             krit = tolowers(krit);
         }
+        string vec_list = "";
+        cout << "Norite naudoti vector ar list? (vector - 'v', list - 'l')" << endl;
+        cin >> vec_list;
+        vec_list = tolowers(vec_list);
 
-        cout << "\nAtliekama failu analize: \n";
+        while (vec_list != "v" && vec_list != "l") {
+            cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite v arba l): ";
+            cin >> vec_list;
+            vec_list = tolowers(vec_list);
+        }
+
+        if (vec_list == "v")
+        {
+              cout << "\nAtliekama failu analize su vector<Studentas> studentai: \n";
         darbas_su_failais("studentai_1000.txt", n1, rus, krit);
         darbas_su_failais("studentai_10000.txt", n2, rus, krit);
         darbas_su_failais("studentai_100000.txt", n3, rus, krit);
         darbas_su_failais("studentai_1000000.txt", n4, rus, krit);
         darbas_su_failais("studentai_10000000.txt", n5, rus, krit);
+
+        }
+        else
+        {
+            cout << "\nAtliekama failu analize su list<Studentas> studentai_list: \n";
+        darbas_su_failais_list("studentai_1000.txt", n1, rus, krit);
+        darbas_su_failais_list("studentai_10000.txt", n2, rus, krit);
+        darbas_su_failais_list("studentai_100000.txt", n3, rus, krit);
+        darbas_su_failais_list("studentai_1000000.txt", n4, rus, krit);
+        darbas_su_failais_list("studentai_10000000.txt", n5, rus, krit);
+        }
+
+
+
+
     }
+
+
+
+/*
+    cout << "\nCPU Info:";
+    system("wmic cpu get Name");
+    cout << "\nSerdziu skaicius: ";
+    system("wmic cpu get NumberOfCores");
+    cout << "\nLoginiu procesoriu skaicius: ";
+    system("wmic cpu get NumberOfLogicalProcessors");
+    cout << "\nMemory Info:\n" << exec("free -h") ;
+    system("wmic memorychip get Capacity");
+    cout << "\nDisk Info:\n" << exec("df -h") ;
+    system("wmic diskdrive get Model,Size");*/
+
 
     return 0;
 }
