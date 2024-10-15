@@ -11,7 +11,7 @@ RAM Info:
 Capacity  
 4294967296 (4,091 MB)  
 
-Disk Info:
+Disk Info (SSD):
 MediaType: Fixed hard disk media  
 Model: VMware Virtual NVMe Disk  
 
