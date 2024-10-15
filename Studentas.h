@@ -22,4 +22,13 @@ bool compare_students(const Studentas& a, const Studentas& b);
 string capitalize(string var);
 string tolowers(string var);
 
+void print_results_list(const list<Studentas>& studentai_list);
+void duomenys_list(list<Studentas>& studentai_list);
+void galutinis_balas_med_list(list<Studentas>& studentai_list);
+void galutinis_balas_vid_list(list<Studentas>& studentai_list);
+void skaityti_list(list<Studentas>& studentai_list, string name, string kriterijus);
+string exec(const char* cmd);
+
+
+
 #endif // STUDENTAS_H_INCLUDED
