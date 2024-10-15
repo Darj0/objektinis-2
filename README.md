@@ -1,5 +1,20 @@
 # objektinis-programavimas
 Programa nuskaito ivestu studentu duomenis ir skaiciuoja galutini ivertinima pagal pasirinkta metoda(nauduojant mediana arba vidurki)  
+
+Testavimo sistemos parametrai:  
+CPU Info:  
+Name: Apple silicon  
+Serdziu skaicius (NumberOfCores): 2  
+Loginiu procesoriu skaicius (NumberOfLogicalProcessors): 2  
+
+RAM Info:  
+Capacity  
+4294967296 (4,091 MB)  
+
+Disk Info:
+MediaType: Fixed hard disk media  
+Model: VMware Virtual NVMe Disk  
+
 Spartos analize:
 
 Failo is 1000 duomenu nuskaitimo laikas: 0.0156223 sek  
