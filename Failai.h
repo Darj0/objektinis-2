@@ -16,6 +16,11 @@ bool compare_by_name(const Studentas& a, const Studentas& b);
 void sort_students_by_grade(vector<Studentas>& studentai);
 bool compare_by_grade(const Studentas& a, const Studentas& b);
 
-
+void rusiavimas_2_grupes_list(const list<Studentas>& studentai_list, list<Studentas>& vargsiukai_list, list<Studentas>& kietiakiai_list);
+void darbas_su_failais_list(string failas, int duom_sk, string reikalavimas, string kriterijus);
+void surusioti_failai_list(list<Studentas>& studentai_list, const string& name);
+void sort_students_by_name_list(list<Studentas>& studentai_list);
+void sort_students_by_surname_list(list<Studentas>& studentai_list);
+void sort_students_by_grade_list(list<Studentas>& studentai_list);
 
 #endif // FAILAI_H_INCLUDED
