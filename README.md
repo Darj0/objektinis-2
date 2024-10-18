@@ -13,6 +13,7 @@ CPU Info:
 Name: Apple silicon  
 Serdziu skaicius (NumberOfCores): 2  
 Loginiu procesoriu skaicius (NumberOfLogicalProcessors): 2  
+Taktine daznis (GHz) (CurrentClockSpeed): 2  
 
 RAM Info:  
 Capacity  
