@@ -90,69 +90,89 @@ void galutinis_balas_med_list(list<Studentas>& studentai_list)
 //-------------------------------------------------------
 void print_results(const vector<Studentas>& studentai)
 {
-
     cout << left
-         << setw(15) << "Pavarde"
-         << setw(15) << "Vardas"
-         << setw(25) << "Galutinis (Vid.)"
-         << setw(25) << "Galutinis (Med.)"
-         << setw(25) << "Atminties adresas" << endl;
-
+         << setw(10) << "Pavarde"
+         << setw(10) << "Vardas"
+         << setw(15) << "Vid."
+         << setw(15) << "Med."
+         << setw(20) << "Adresas"
+         << setw(10) << "Zingsnis" << endl;
 
     cout << setfill('-')
-         << setw(105) << "-"
+         << setw(80) << "-"
          << setfill(' ') << endl;
 
+    const Studentas* previous_student = nullptr; 
 
     for (const auto& studentas : studentai) {
         cout << left
-             << setw(15) << studentas.pavarde
-             << setw(15) << studentas.vardas;
+             << setw(10) << studentas.pavarde
+             << setw(10) << studentas.vardas;
 
         if (studentas.reikalavimas == "vid") {
-            cout << setw(25) << fixed << setprecision(2) << studentas.galutinis
-                 << setw(25) << "-----"
-                 << setw(25) << &studentas << endl;
+            cout << setw(15) << fixed << setprecision(2) << studentas.galutinis
+                 << setw(15) << "-----"
+                 << setw(20) << &studentas;
+        } else if (studentas.reikalavimas == "med") {
+            cout << setw(15) << "-----"
+                 << setw(15) << fixed << setprecision(2) << studentas.galutinis
+                 << setw(20) << &studentas;
         }
-        else if (studentas.reikalavimas == "med") {
-            cout << setw(25) << "-----"
-                 << setw(25) << fixed << setprecision(2) << studentas.galutinis
-                 << setw(25) << &studentas << endl;
+
+        if (previous_student) {
+            ptrdiff_t zingsnis = reinterpret_cast<const char*>(&studentas) - reinterpret_cast<const char*>(previous_student);
+            cout << setw(10) << zingsnis;
+        } else {
+            cout << setw(10) << "-----";
         }
+
+        cout << endl;
+        previous_student = &studentas;  
     }
 }
+
 //----------------------------------------------------------------------------
 void print_results_list(const list<Studentas>& studentai_list)
 {
-
     cout << left
-         << setw(15) << "Pavarde"
-         << setw(15) << "Vardas"
-         << setw(25) << "Galutinis (Vid.)"
-         << setw(25) << "Galutinis (Med.)"
-         << setw(25) << "Atminties adresas" << endl;
-
+         << setw(10) << "Pavarde"
+         << setw(10) << "Vardas"
+         << setw(15) << "Vid."
+         << setw(15) << "Med."
+         << setw(20) << "Adresas"
+         << setw(10) << "Zingsnis" << endl;
 
     cout << setfill('-')
-         << setw(105) << "-"
+         << setw(80) << "-"
          << setfill(' ') << endl;
 
+    const Studentas* previous_student = nullptr; 
 
     for (const auto& studentas : studentai_list) {
         cout << left
-             << setw(15) << studentas.pavarde
-             << setw(15) << studentas.vardas;
+             << setw(10) << studentas.pavarde
+             << setw(10) << studentas.vardas;
 
         if (studentas.reikalavimas == "vid") {
-            cout << setw(25) << fixed << setprecision(2) << studentas.galutinis
-                 << setw(25) << "-----"
-                 << setw(25) << &studentas << endl;
+            cout << setw(15) << fixed << setprecision(2) << studentas.galutinis
+                 << setw(15) << "-----"
+                 << setw(20) << &studentas;
+        } else if (studentas.reikalavimas == "med") {
+            cout << setw(15) << "-----"
+                 << setw(15) << fixed << setprecision(2) << studentas.galutinis
+                 << setw(20) << &studentas;
         }
-        else if (studentas.reikalavimas == "med") {
-            cout << setw(25) << "-----"
-                 << setw(25) << fixed << setprecision(2) << studentas.galutinis
-                 << setw(25) << &studentas << endl;
+
+        if (previous_student) {
+            
+            ptrdiff_t zingsnis = abs(reinterpret_cast<const char*>(&studentas) - reinterpret_cast<const char*>(previous_student));
+            cout << setw(10) << zingsnis;
+        } else {
+            cout << setw(10) << "-----";
         }
+
+        cout << endl;
+        previous_student = &studentas;  
     }
 }
 //----------------------------------------------------------------------------
