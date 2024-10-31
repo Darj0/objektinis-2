@@ -1,5 +1,19 @@
 #include "Failai.h"
 #include "Studentas.h"
+
+
+void print_memory_usage(const vector<Studentas>& v, const string& name) {
+    size_t memory_in_bytes = v.capacity() * sizeof(Studentas);
+    cout << "Memory used by " << name << ": " << memory_in_bytes << " bytes" << endl;
+    }
+
+//----------------------------------------------------------------------------
+void print_memory_usage_list(const std::list<Studentas>& lst, const string& name) {
+    size_t node_size = sizeof(Studentas) + 2 * sizeof(void*);
+    size_t memory_in_bytes = lst.size() * node_size;
+    std::cout << "Memory used by " << name << ": " << memory_in_bytes << " bytes" << std::endl;
+}
+//--------------------------------------------------------------------------------------------
 string generuoti_varda(int indeksas) {
     return "Vardas" + to_string(indeksas);
 }
@@ -71,9 +85,11 @@ void kurti_faila(vector<Studentas>& studentai, string failo_priedas)
 }
 
 //-------------------------------------------
-void rusiavimas_2_grupes(const vector<Studentas>& studentai, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakiai)
+void rusiavimas_2_grupes( vector<Studentas>& studentai, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakiai, int strategija)
 {
-    for (const auto& studentas : studentai) {
+if (strategija == 1)
+{
+     for (const auto& studentas : studentai) {
         if (studentas.galutinis < 5.0) {
             vargsiukai.push_back(studentas);
         } else {
@@ -81,21 +97,92 @@ void rusiavimas_2_grupes(const vector<Studentas>& studentai, vector<Studentas>& 
         }
     }
 }
-//-------------------------------------------
-void rusiavimas_2_grupes_list(const list<Studentas>& studentai_list, list<Studentas>& vargsiukai_list, list<Studentas>& kietiakiai_list)
+
+else if (strategija == 2)
 {
-    for (const auto& studentas : studentai_list) {
+    auto it = remove_if(studentai.begin(), studentai.end(),
+                              [&vargsiukai](Studentas& studentas) {
+                                  if (studentas.galutinis < 5.0) {
+                                      vargsiukai.push_back(move(studentas));
+                                      return true;
+                                  }
+                                  return false;
+                              });
+
+    studentai.erase(it, studentai.end());
+    kietiakiai = move(studentai);
+}
+
+
+else
+{
+     auto it = partition(studentai.begin(), studentai.end(),
+                                [](const Studentas& studentas) { return studentas.galutinis < 5.0; });
+
+
+            vargsiukai.assign(make_move_iterator(studentai.begin()), make_move_iterator(it));
+            kietiakiai.assign(make_move_iterator(it), make_move_iterator(studentai.end()));
+
+
+            studentai.clear();
+            studentai.shrink_to_fit();
+}
+
+
+
+}
+//-------------------------------------------
+void rusiavimas_2_grupes_list( list<Studentas>& studentai_list, list<Studentas>& vargsiukai_list, list<Studentas>& kietiakiai_list, int strategija)
+{
+ if (strategija == 1)
+ {
+     for (const auto& studentas : studentai_list) {
         if (studentas.galutinis < 5.0) {
             vargsiukai_list.push_back(studentas);
         } else {
             kietiakiai_list.push_back(studentas);
         }
     }
+ }
+
+else if (strategija == 2)
+{
+    for (auto it = studentai_list.begin(); it != studentai_list.end(); ) {
+        if (it->galutinis < 5.0) {
+
+            vargsiukai_list.push_back(move(*it));
+            it = studentai_list.erase(it);
+        } else {
+            it++;
+        }
+
+    }
+
+
+
+    kietiakiai_list = move(studentai_list);
+
+}
+
+else if (strategija == 3) {
+
+        auto it = partition(studentai_list.begin(), studentai_list.end(), [](const Studentas& s) {
+            return s.galutinis < 5.0;
+        });
+
+
+        vargsiukai_list.splice(vargsiukai_list.end(), studentai_list, studentai_list.begin(), it);
+
+
+        kietiakiai_list.splice(kietiakiai_list.end(), studentai_list);
+    }
+
+
 }
 
 
 //-----------------------------------------------
-void darbas_su_failais(string failas, int duom_sk, string reikalavimas, string kriterijus)
+void darbas_su_failais(string failas, int duom_sk, string reikalavimas, string kriterijus, int strategija)
 {
     vector<Studentas> studentai;
 
@@ -137,7 +224,7 @@ void darbas_su_failais(string failas, int duom_sk, string reikalavimas, string k
     vector<Studentas> vargsiukai;
     vector<Studentas> kietiakiai;
     auto start_split = chrono::high_resolution_clock::now();
-    rusiavimas_2_grupes(studentai, vargsiukai, kietiakiai);
+    rusiavimas_2_grupes(studentai, vargsiukai, kietiakiai, strategija);
     auto end_split = chrono::high_resolution_clock::now();
     chrono::duration<double> duration_split = end_split - start_split;
     cout << duom_sk << " studentu skirstymo i 2 grupes laikas: " << duration_split.count() << " sek" << endl;
@@ -156,13 +243,18 @@ void darbas_su_failais(string failas, int duom_sk, string reikalavimas, string k
 
     cout << "Bendras laikas: " << duration_read.count() + duration_sort.count() + duration_split.count() + duration_protingi.count() + duration_nelaimingi.count() << " sek" << endl;
 
+    print_memory_usage(studentai, "studentai");
+    print_memory_usage(vargsiukai, "vargsiukai");
+    print_memory_usage(kietiakiai, "kietiakiai");
+
+
     vargsiukai.clear();
     kietiakiai.clear();
     studentai.clear();
 }
 //--------------------------------------------------------------
 
-void darbas_su_failais_list(string failas, int duom_sk, string reikalavimas, string kriterijus)
+void darbas_su_failais_list(string failas, int duom_sk, string reikalavimas, string kriterijus, int strategija)
 {
     list<Studentas> studentai_list;
 
@@ -203,7 +295,7 @@ void darbas_su_failais_list(string failas, int duom_sk, string reikalavimas, str
     list<Studentas> kietiakiai_list;
 
     auto start_split = chrono::high_resolution_clock::now();
-    rusiavimas_2_grupes_list(studentai_list, vargsiukai_list, kietiakiai_list);
+    rusiavimas_2_grupes_list(studentai_list, vargsiukai_list, kietiakiai_list, strategija);
     auto end_split = chrono::high_resolution_clock::now();
     chrono::duration<double> duration_split = end_split - start_split;
     cout << duom_sk << " studentu skirstymo i 2 grupes laikas: " << duration_split.count() << " sek" << endl;
@@ -223,6 +315,11 @@ void darbas_su_failais_list(string failas, int duom_sk, string reikalavimas, str
 
 
     cout << "Bendras laikas: " << duration_read.count() + duration_sort.count() + duration_split.count() + duration_protingi.count() + duration_nelaimingi.count() << " sek" << endl;
+
+
+    print_memory_usage_list(studentai_list, "studentai_list");
+    print_memory_usage_list(vargsiukai_list, "vargsiukai_list");
+    print_memory_usage_list(kietiakiai_list, "kietiakiai_list");
 
 
     vargsiukai_list.clear();
