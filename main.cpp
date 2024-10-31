@@ -142,24 +142,34 @@ int main() {
             vec_list = tolowers(vec_list);
         }
 
+        int strategija;
+        cout << "Kokia strategija norite nauduoti? (1, 2, 3)" << endl;
+        cin >> strategija;
+
+        while (strategija != 1 && strategija != 2 && strategija != 3) {
+            cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite 1, 2 arba 3): ";
+            cin >> strategija;
+
+        }
+
         if (vec_list == "v")
         {
               cout << "\nAtliekama failu analize su vector<Studentas> studentai: \n";
-        darbas_su_failais("studentai_1000.txt", n1, rus, krit);
-        darbas_su_failais("studentai_10000.txt", n2, rus, krit);
-        darbas_su_failais("studentai_100000.txt", n3, rus, krit);
-        darbas_su_failais("studentai_1000000.txt", n4, rus, krit);
-        darbas_su_failais("studentai_10000000.txt", n5, rus, krit);
+        darbas_su_failais("studentai_1000.txt", n1, rus, krit, strategija);
+        darbas_su_failais("studentai_10000.txt", n2, rus, krit, strategija);
+        darbas_su_failais("studentai_100000.txt", n3, rus, krit, strategija);
+        darbas_su_failais("studentai_1000000.txt", n4, rus, krit, strategija);
+        darbas_su_failais("studentai_10000000.txt", n5, rus, krit, strategija);
 
         }
         else
         {
             cout << "\nAtliekama failu analize su list<Studentas> studentai_list: \n";
-        darbas_su_failais_list("studentai_1000.txt", n1, rus, krit);
-        darbas_su_failais_list("studentai_10000.txt", n2, rus, krit);
-        darbas_su_failais_list("studentai_100000.txt", n3, rus, krit);
-        darbas_su_failais_list("studentai_1000000.txt", n4, rus, krit);
-        darbas_su_failais_list("studentai_10000000.txt", n5, rus, krit);
+        darbas_su_failais_list("studentai_1000.txt", n1, rus, krit, strategija);
+        darbas_su_failais_list("studentai_10000.txt", n2, rus, krit, strategija);
+        darbas_su_failais_list("studentai_100000.txt", n3, rus, krit, strategija);
+        darbas_su_failais_list("studentai_1000000.txt", n4, rus, krit, strategija);
+        darbas_su_failais_list("studentai_10000000.txt", n5, rus, krit, strategija);
         }
 
 
@@ -170,17 +180,22 @@ int main() {
 
 
 /*
-    cout << "\nCPU Info:";
-    system("wmic cpu get Name");
-    cout << "\nSerdziu skaicius: ";
-    system("wmic cpu get NumberOfCores");
-    cout << "\nLoginiu procesoriu skaicius: ";
-    system("wmic cpu get NumberOfLogicalProcessors");
-    cout << "\nMemory Info:\n" << exec("free -h") ;
-    system("wmic memorychip get Capacity");
-    cout << "\nDisk Info:\n" << exec("df -h") ;
-    system("wmic diskdrive get Model,Size");*/
+   cout << "\nCPU Info:";
+system("wmic cpu get Name");
+cout << "\nSerdziu skaicius: ";
+system("wmic cpu get NumberOfCores");
+cout << "\nLoginiu procesoriu skaicius: ";
+system("wmic cpu get NumberOfLogicalProcessors");
+cout << "\nTaktine daznis (GHz): ";
+system("wmic cpu get CurrentClockSpeed");
+cout << "\nMemory Info:\n";
+system("wmic memorychip get Capacity");
+cout << "\nDisk Info:\n";
+system("wmic diskdrive get Model,Size");
 
+*/
+
+system("pause");
 
     return 0;
 }
