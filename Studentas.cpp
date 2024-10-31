@@ -102,7 +102,7 @@ void print_results(const vector<Studentas>& studentai)
          << setw(80) << "-"
          << setfill(' ') << endl;
 
-    const Studentas* previous_student = nullptr; 
+    const Studentas* previous_student = nullptr;
 
     for (const auto& studentas : studentai) {
         cout << left
@@ -127,7 +127,7 @@ void print_results(const vector<Studentas>& studentai)
         }
 
         cout << endl;
-        previous_student = &studentas;  
+        previous_student = &studentas;
     }
 }
 
@@ -146,7 +146,7 @@ void print_results_list(const list<Studentas>& studentai_list)
          << setw(80) << "-"
          << setfill(' ') << endl;
 
-    const Studentas* previous_student = nullptr; 
+    const Studentas* previous_student = nullptr;
 
     for (const auto& studentas : studentai_list) {
         cout << left
@@ -164,7 +164,7 @@ void print_results_list(const list<Studentas>& studentai_list)
         }
 
         if (previous_student) {
-            
+
             ptrdiff_t zingsnis = abs(reinterpret_cast<const char*>(&studentas) - reinterpret_cast<const char*>(previous_student));
             cout << setw(10) << zingsnis;
         } else {
@@ -172,7 +172,7 @@ void print_results_list(const list<Studentas>& studentai_list)
         }
 
         cout << endl;
-        previous_student = &studentas;  
+        previous_student = &studentas;
     }
 }
 //----------------------------------------------------------------------------
