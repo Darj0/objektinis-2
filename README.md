@@ -1,12 +1,89 @@
 # objektinis-programavimas
-Programa nuskaito ivestu studentu duomenis ir skaiciuoja galutini ivertinima pagal pasirinkta metoda(nauduojant mediana arba vidurki)  
+Programa nuskaito studentu duomenis, skaiciuoja galutini ivertinima pagal pasirinkta metoda, rusioja studentus i 2 grupes atsizvelgiant i ju galutini ivertinima ir iraso juos i skirtingus failus.
+
+Diegimo ir paleidimo proceso instrukcija:  
+1. Atsisiuskyte zip faila
+2. Sukurkyte direktorija su pavadinimu "Sort" ir idekite i ja atsiustus failus
+3. Kad programa veiktu turi buti idiegta CMake (galite ja atsisiusti cia: https://cmake.org/download/)
+4. Atidarykite direktorija "build" (yra tarp atsiustu failu), dešiniuoju pelės klavišu spauskite "Open in Terminal" arba paieskoj suraskite "Terminal" ir parasykite "cd path/to/your_project" (nurodykite kelia iki projekto direktorijos build)
+5. Terminale komandineje eiluteje parasykite "cmake -G "MinGW Makefiles" .."
+6. Terminale komandineje eiluteje parasykite "mingw32-make"
+7. "build"direktorijoje atsirado "Sort.exe" failas, programa galite atidaryti paspausdus ant jo arba  Terminale komandineje eiluteje parasykite "./Sort.exe" (pirma karta paleisdami programa ir atlikdami analize reikia butinai generuoti naujus failus) 
+
 Bendras veikimo laikas naudojant skirtingus konteinerius:
 
 
-| Konteineris |     1000    |    10000    |    100000    |   1000000   |   10000000  |
-|-------------|-------------|-------------|--------------|-------------|-------------|
-| Std::Vector |0.0312398 sek| 0.124997 sek|  1.21976 sek | 14.8906 sek | 166.621 sek |
-|  Std::List  |0.025656 sek |0.0922341 sek| 0.728112 sek |7.62903 sek  | 125.133 sek |
+|   Strategija    | Konteineris |     1000    |    10000    |    100000    |   1000000   |   10000000  |
+|-----------------|-------------|-------------|-------------|--------------|-------------|-------------|
+|        1        | Std::Vector | 0 sek| 0 sek|  0.0221533 sek | 0.220326 sek | 9.08241 sekk |
+|        1        | Std::List   | 0 sek | 0 sek| 0.0479485 sek | 0.299235 sek  |  25.4008 sek|
+|        2        | Std::Vector |0 sek| 0 sekk|  0.0111158 sek | 0.0860013 sek | 1.02397 sek |
+|        2        | Std::List   |0 sek |0 sek| 0.012883 sek |0.138116 sek  | 4.435 sek |
+|        3        | Std::Vector |0 sek| 0 sekk|  0.0101177 sek |  0.0361211 sek | 3.984 sek |
+|        3        | Std::List   |0 sek | 0 sek| 0.0059966 sek |0.161987 sek | 2.15097 sek |
+
+
+1000
+
+|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
+|-----------------|-------------|-------------|-------------|--------------|
+|        1        | Std::Vector | 139264 bytes| 69632 bytes|  139264 bytes| 
+|        1        | Std::List   | 151848 bytes | 60648 bytes| 91200 bytes |
+|        2        | Std::Vector |0 bytes| 69632 bytes| 139264 bytes | 
+|        2        | Std::List   |0 bytes|60648 bytes| 91200 bytes |
+|        3        | Std::Vector |0 bytes| 54264 bytes|  81600 bytes |
+|        3        | Std::List   |0 bytes |60648 bytes| 91200 bytes|
+
+
+
+10000
+
+|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
+|-----------------|-------------|-------------|-------------|--------------|
+|        1        | Std::Vector | 2228224 bytes|557056 bytes|  1114112 bytes| 
+|        1        | Std::List   |1519848 bytes |60648 bytes|  91200 bytes |
+|        2        | Std::Vector |0 bytes| 557056 bytes|  2228224 bytes | 
+|        2        | Std::List   |0 bytes | 610128 bytes|  909720 bytesk |
+|        3        | Std::Vector |0 bytes| 545904 bytes| 813960 bytes |
+|        3        | Std::List   |0 bytes |610128 bytes| 909720 bytes |
+
+
+100000
+
+|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
+|-----------------|-------------|-------------|-------------|--------------|
+|        1        | Std::Vector | 17825792 bytes|8912896 bytes|8912896 bytes| 
+|        1        | Std::List   |1519848 bytes |6114808 bytes|  9085040 bytes |
+|        2        | Std::Vector |0 bytes|  8912896 bytes| 17825792 bytes | 
+|        2        | Std::List   |0 bytes |6114808 bytes|  9085040 bytes |
+|        3        | Std::Vector |0 bytes|  5471144 bytes|  8128720 bytes |
+|        3        | Std::List   |0 bytes |6114808 bytes|  9085040 bytes |
+
+
+
+1000000
+
+|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
+|-----------------|-------------|-------------|-------------|--------------|
+|        1        | Std::Vector |142606336 bytes|71303168 bytes|71303168 bytes| 
+|        1        | Std::List   | 123394208 bytes | 49351208 bytesk| 74043000 bytes |
+|        2        | Std::Vector |0 bytes| 71303168 bytes|  142606336 bytes | 
+|        2        | Std::List   |0 bytes |49351208 bytes|  74043000 bytes |
+|        3        | Std::Vector |0 bytes|  44156344 bytesk| 66249000 bytes |
+|        3        | Std::List   |0 bytes |49351208 bytes| 74043000 bytes |
+
+
+10000000
+
+|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
+|-----------------|-------------|-------------|-------------|--------------|
+|        1        | Std::Vector |2281701376 bytes|570425344 bytes|1140850688 bytes| 
+|        1        | Std::List   |1519999848 bytes | 607937984 bytes|  912061864 bytes |
+|        2        | Std::Vector |0 bytes| 570425344 bytes|   2281701376 bytes | 
+|        2        | Std::List   |0 bytes | 607937984 bytes|  912061864 bytes |
+|        3        | Std::Vector |0 bytes| 543944512 bytes|  816055352 bytes |
+|        3        | Std::List   |0 bytes |607937984 bytes| 912061864 bytes |
+
 
 Testavimo sistemos parametrai:  
 CPU Info:  
@@ -23,81 +100,4 @@ Disk Info (SSD):
 MediaType: Fixed hard disk media  
 Model: VMware Virtual NVMe Disk  
 
-Spartos analize naudojant vector:
-
-Failo is 1000 duomenu nuskaitimo laikas: 0.0156223 sek  
-1000 studentu rusiavimo laikas: 0 sek  
-1000 studentu skirstymo i 2 grupes laikas: 0 sek  
-1000 protingu studentu irasimo i faila laikas: 0.0156175 sek  
-1000 nelaimingu studentu irasimo i faila laikas: 0 sek  
-Bendras laikas: 0.0312398 sek  
-
-Failo is 10000 duomenu nuskaitimo laikas: 0.0625003 sek  
-10000 studentu rusiavimo laikas: 0.0322563 sek  
-10000 studentu skirstymo i 2 grupes laikas: 0 sek  
-10000 protingu studentu irasimo i faila laikas: 0.0152922 sek  
-10000 nelaimingu studentu irasimo i faila laikas: 0.0149484 sek  
-Bendras laikas: 0.124997 sek  
-
-Failo is 100000 duomenu nuskaitimo laikas: 0.484377 sek  
-100000 studentu rusiavimo laikas: 0.328122 sek  
-100000 studentu skirstymo i 2 grupes laikas: 0.0468769 sek  
-100000 protingu studentu irasimo i faila laikas: 0.218943 sek  
-100000 nelaimingu studentu irasimo i faila laikas: 0.141441 sek  
-Bendras laikas: 1.21976 sek  
-
-Failo is 1000000 duomenu nuskaitimo laikas: 5.65625 sek  
-1000000 studentu rusiavimo laikas: 4.6875 sek  
-1000000 studentu skirstymo i 2 grupes laikas: 0.641641 sek  
-1000000 protingu studentu irasimo i faila laikas: 2.18649 sek  
-1000000 nelaimingu studentu irasimo i faila laikas: 1.71875 sek  
-Bendras laikas: 14.8906 sek  
-
-Failo is 10000000 duomenu nuskaitimo laikas: 63.1527 sek    
-10000000 studentu rusiavimo laikas: 51.7823 sek    
-10000000 studentu skirstymo i 2 grupes laikas: 12.0302 sek  
-10000000 protingu studentu irasimo i faila laikas: 23.0791 sek  
-10000000 nelaimingu studentu irasimo i faila laikas: 16.5772 sek   
-Bendras laikas: 166.621 sek  
-
-
-Spartos analize naudojant vector:
-
-Failo is 1000 duomenu nuskaitimo laikas: 0.0155346 sek  
-1000 studentu rusiavimo laikas: 0.0011065 sek  
-1000 studentu skirstymo i 2 grupes laikas: 0.0009997 sek  
-1000 protingu studentu irasimo i faila laikas: 0.0050163 sek  
-1000 nelaimingu studentu irasimo i faila laikas: 0.0029989 sek  
-Bendras laikas: 0.025656 sek  
-
-Failo is 10000 duomenu nuskaitimo laikas: 0.0541719 sek  
-10000 studentu rusiavimo laikas: 0.0020616 sek  
-10000 studentu skirstymo i 2 grupes laikas: 0.0030002 sek  
-10000 protingu studentu irasimo i faila laikas: 0.0179975 sek  
-10000 nelaimingu studentu irasimo i faila laikas: 0.0150029 sek  
-Bendras laikas: 0.0922341 sek  
-
-Failo is 100000 duomenu nuskaitimo laikas: 0.332996 sek  
-100000 studentu rusiavimo laikas: 0.0270003 sek  
-100000 studentu skirstymo i 2 grupes laikas: 0.0581131 sek  
-100000 protingu studentu irasimo i faila laikas: 0.185 sek  
-100000 nelaimingu studentu irasimo i faila laikas: 0.125003 sek  
-Bendras laikas: 0.728112 sek  
-
-Failo is 1000000 duomenu nuskaitimo laikas: 3.50603 sek  
-1000000 studentu rusiavimo laikas: 0.521001 sek  
-1000000 studentu skirstymo i 2 grupes laikas: 0.405117 sek  
-1000000 protingu studentu irasimo i faila laikas: 1.80988 sek  
-1000000 nelaimingu studentu irasimo i faila laikas: 1.387 sek  
-Bendras laikas: 7.62903 sek  
-
-Failo is 10000000 duomenu nuskaitimo laikas: 41.7589 sek  
-10000000 studentu rusiavimo laikas: 11.9981 sek  
-10000000 studentu skirstymo i 2 grupes laikas: 30.4351 sek  
-10000000 protingu studentu irasimo i faila laikas: 23.5938 sek  
-10000000 nelaimingu studentu irasimo i faila laikas: 17.3467 sek  
-Bendras laikas: 125.133 sek  
-
-
-<img src="https://github.com/user-attachments/assets/5f020520-7fa4-4e14-818b-8bcff8c407ea" alt="image" width="300"/>
 
