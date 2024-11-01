@@ -23,7 +23,7 @@ Bendras veikimo laikas naudojant skirtingus konteinerius:
 |        3        | Std::List   |0 sek | 0 sek| 0.0059966 sek |0.161987 sek | 2.15097 sek |
 
 
-1000
+Failas is 1000 duomenu, atminties panauduojimas:
 
 |   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
 |-----------------|-------------|-------------|-------------|--------------|
@@ -36,7 +36,7 @@ Bendras veikimo laikas naudojant skirtingus konteinerius:
 
 
 
-10000
+Failas is 10000 duomenu, atminties panauduojimas:
 
 |   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
 |-----------------|-------------|-------------|-------------|--------------|
@@ -48,7 +48,7 @@ Bendras veikimo laikas naudojant skirtingus konteinerius:
 |        3        | Std::List   |0 bytes |610128 bytes| 909720 bytes |
 
 
-100000
+Failas is 100000 duomenu, atminties panauduojimas:
 
 |   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
 |-----------------|-------------|-------------|-------------|--------------|
@@ -61,7 +61,7 @@ Bendras veikimo laikas naudojant skirtingus konteinerius:
 
 
 
-1000000
+Failas is 1000000 duomenu, atminties panauduojimas:
 
 |   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
 |-----------------|-------------|-------------|-------------|--------------|
@@ -73,7 +73,7 @@ Bendras veikimo laikas naudojant skirtingus konteinerius:
 |        3        | Std::List   |0 bytes |49351208 bytes| 74043000 bytes |
 
 
-10000000
+Failas is 10000000 duomenu, atminties panauduojimas:
 
 |   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
 |-----------------|-------------|-------------|-------------|--------------|
