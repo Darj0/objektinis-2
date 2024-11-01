@@ -8,9 +8,15 @@ Diegimo ir paleidimo proceso instrukcija:
 4. Atidarykite direktorija "build" (yra tarp atsiustu failu), dešiniuoju pelės klavišu spauskite "Open in Terminal" arba paieskoj suraskite "Terminal" ir parasykite "cd path/to/your_project" (nurodykite kelia iki projekto direktorijos build)
 5. Terminale komandineje eiluteje parasykite "cmake -G "MinGW Makefiles" .."
 6. Terminale komandineje eiluteje parasykite "mingw32-make"
-7. "build"direktorijoje atsirado "Sort.exe" failas, programa galite atidaryti paspausdus ant jo arba  Terminale komandineje eiluteje parasykite "./Sort.exe" (pirma karta paleisdami programa ir atlikdami analize reikia butinai generuoti naujus failus) 
+7. "build"direktorijoje atsirado "Sort.exe" failas, programa galite atidaryti paspausdus ant jo arba  Terminale komandineje eiluteje parasykite "./Sort.exe" (pirma karta paleisdami programa ir atlikdami analize reikia butinai generuoti naujus failus)
 
-Bendras veikimo laikas naudojant skirtingus konteinerius:
+
+1 strategija: Bendro studentai konteinerio (vector ir list tipų) skaidymas į du naujus to paties tipo konteinerius: "vargšiukų" ir "kietiakų"  
+2 strategija: Bendro studentų konteinerio (vector ir list) skaidymas (rūšiavimas) panaudojant tik vieną naują konteinerį: "vargšiukai"  
+3 strategija: Bendro studentų konteinerio skaidymas (rūšiavimas) panaudojant  2 strategiją  įtraukiant į ją "efektyvius" darbo su konteineriais metodus (std::partition)
+
+
+Studentu rūšiavimo i dvi kategorijas laikas naudojant skirtingus konteinerius ir strategijas:
 
 
 |   Strategija    | Konteineris |     1000    |    10000    |    100000    |   1000000   |   10000000  |
