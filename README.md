@@ -21,11 +21,11 @@ Studentu rūšiavimo i dvi kategorijas laikas naudojant skirtingus konteinerius
 
 |   Strategija    | Konteineris |     1000    |    10000    |    100000    |   1000000   |   10000000  |
 |-----------------|-------------|-------------|-------------|--------------|-------------|-------------|
-|        1        | Std::Vector | 0 sek| 0 sek|  0.0221533 sek | 0.220326 sek | 9.08241 sekk |
+|        1        | Std::Vector | 0 sek| 0 sek|  0.0221533 sek | 0.220326 sek | 9.08241 sek |
 |        1        | Std::List   | 0 sek | 0 sek| 0.0479485 sek | 0.299235 sek  |  25.4008 sek|
-|        2        | Std::Vector |0 sek| 0 sekk|  0.0111158 sek | 0.0860013 sek | 1.02397 sek |
+|        2        | Std::Vector |0 sek| 0 sek|  0.0111158 sek | 0.0860013 sek | 1.02397 sek |
 |        2        | Std::List   |0 sek |0 sek| 0.012883 sek |0.138116 sek  | 4.435 sek |
-|        3        | Std::Vector |0 sek| 0 sekk|  0.0101177 sek |  0.0361211 sek | 3.984 sek |
+|        3        | Std::Vector |0 sek| 0 sek|  0.0101177 sek |  0.0361211 sek | 3.984 sek |
 |        3        | Std::List   |0 sek | 0 sek| 0.0059966 sek |0.161987 sek | 2.15097 sek |
 
 
