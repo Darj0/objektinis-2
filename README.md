@@ -4,7 +4,7 @@ Programa nuskaito studentu duomenis, skaiciuoja galutini ivertinima pagal pasiri
 Diegimo ir paleidimo proceso instrukcija:  
 1. Atsisiuskyte zip faila
 2. Sukurkyte direktorija su pavadinimu "Sort" ir idekite i ja atsiustus failus
-3. Kad programa veiktu turi buti idiegta CMake (galite ja atsisiusti cia: https://cmake.org/download/)
+3. Kad programa veiktu turi buti idiegta CMake (patikrinkite ar jau turite sia programa: paieskoj suraskite "Terminal" ir parasykite "cmake --version", jei programos neturite galite ja atsisiusti cia: https://cmake.org/download/ (windows); "brew install cmake" (macOS); "sudo apt-get install cmake" (Linux))
 4. Atidarykite direktorija "build" (yra tarp atsiustu failu), dešiniuoju pelės klavišu spauskite "Open in Terminal" arba paieskoj suraskite "Terminal" ir parasykite "cd path/to/Sort/build" (nurodykite kelia iki projekto direktorijos build)
 5. Terminalo komandineje eiluteje parasykite "cmake" arba jei idiegtas MinGW rasykite "cmake -G "MinGW Makefiles" .."
 6. Terminalo komandineje eiluteje parasykite "make" arba "mingw32-make"
