@@ -1,9 +1,12 @@
 # objektinis-programavimas
 Naudojimosi instrukcija:
 1. Pasirinkite ar norite ivesti studentus(spauskite 1), nuskaityti is failo(spauskite 2)
-ar stebeti failu nuskaitimo ir kurimo spartuma (spauskite 3).  
+ar stebeti failu nuskaitimo ir kurimo spartuma (spauskite 3).
+
 2.1 Paspausdus 1 pasirinkite norite naudoti list arba vector; pasirinkite kiek studentu norite ivesti; iveskite studenti varda, pavarde; toliau jeigu norite generuoti paztmius iveskite "g", jeigu zinote kiek pazimiu norite ivesti, iveskite "taip", jei dar nezinote - "ne". Toliau siekite programoje pateiktas pazimiu ivedimo instrukcijas; pasirinkite ar galutinio balo skaiciavimui norite naudoti vidurki ar mediana.  
-2.2 Paspausdus 2 reikes ivesti filo kuri norite nuskaityti kelia, arba jei jis guli toj pacioj direktorijoj - pavadinima. Pasirinkite ar galutinio balo skaiciavimui norite naudoti vidurki ar mediana.
+
+2.2 Paspausdus 2 reikes ivesti filo kuri norite nuskaityti kelia, arba jei jis guli toj pacioj direktorijoj - pavadinima. Pasirinkite ar galutinio balo skaiciavimui norite naudoti vidurki ar mediana.  
+
 2.3 Paspaudus 3 pasirinkite norite naudoti jau sukurtus failus, ar generuoti naujus (pirma karta paleidus programa butinai reikia generuoti failus, nes neturesit duomenu nuskaitimui); pasirinkite pagal koki parametra norite rusuoti studentus (pagal varda, pavarde ar galutini ivertinima); pasirinkite ar galutinio balo skaiciavimui norite naudoti vidurki ar mediana; pasirinkite norite naudoti vector ar list; pasirinkite viena is 3 strategiju.  
 
 
@@ -20,7 +23,7 @@ Diegimo ir paleidimo proceso instrukcija:
 
 
 Release v0.1: Programa nuskaito ivestu studentu (rankiniu budu arba nuskaito iš failo) duomenis ir skaiciuoja galutini ivertinima pagal pasirinkta metoda(nauduojant mediana arba vidurki)  
-Release v0.2: Programa papildomai gali generuoti atsitiktinius studentu failus, dalinti studentus i 2 grupes (kriu ivertinimas >=5 arba <5) ir generuoti failus sugrupotams studentams. Taip pat atlikita programos veikimo greičio (spartos) analizę. (Daugiausiai laiko uztrunka duomenu nuskaitimas bei rusiavimas, maziausiai - studentu skirstymas i 2 grupes)  
+Release v0.2: Programa papildomai gali generuoti atsitiktinius studentu failus, dalinti studentus i 2 grupes (kriu ivertinimas >=5 arba <5) ir issaugo i failus sugrupotus studentus. Taip pat atlikita programos veikimo greičio (spartos) analizę. (Daugiausiai laiko uztrunka duomenu nuskaitimas bei rusiavimas, maziausiai - studentu skirstymas i 2 grupes)  
 Release v0.3: Programa papildyta to kad galima pasirinkti nauduoti vektor ar list konteineri studentu saugojimui, atlikita programos veikimo greičio (spartos) analizę naudojant skirtingus konteinerius (Rezultatas: list konteineris efektivesnis, darbas su jo uzima maziau laiko, nes duomenis saugojimi atsitiktinai). Dabar galima matyti kiekvieno studento saugijimo adresa   
 Release v1.0: Programa papildyta strategijomis. Dalinti studentus i 2 grupes galima 3 strategijomis:  
 1 strategija: Bendro studentai konteinerio (vector ir list tipų) skaidymas į du naujus to paties tipo konteinerius: "vargšiukų" ir "kietiakų"  
