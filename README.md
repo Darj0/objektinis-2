@@ -53,7 +53,7 @@ Studentu rūšiavimo i dvi kategorijas laikas naudojant skirtingus konteinerius
 
 Failas is 1000 duomenu, atminties panauduojimas:
 
-|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
+|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiukai|Memory used by kietiakiai|
 |-----------------|-------------|-------------|-------------|--------------|
 |        1        | Std::Vector | 139264 bytes| 69632 bytes|  139264 bytes| 
 |        1        | Std::List   | 151848 bytes | 60648 bytes| 91200 bytes |
@@ -66,7 +66,7 @@ Failas is 1000 duomenu, atminties panauduojimas:
 
 Failas is 10000 duomenu, atminties panauduojimas:
 
-|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
+|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiukai|Memory used by kietiakiai|
 |-----------------|-------------|-------------|-------------|--------------|
 |        1        | Std::Vector | 2228224 bytes|557056 bytes|  1114112 bytes| 
 |        1        | Std::List   |1519848 bytes |60648 bytes|  91200 bytes |
@@ -78,7 +78,7 @@ Failas is 10000 duomenu, atminties panauduojimas:
 
 Failas is 100000 duomenu, atminties panauduojimas:
 
-|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
+|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiukai|Memory used by kietiakiai|
 |-----------------|-------------|-------------|-------------|--------------|
 |        1        | Std::Vector | 17825792 bytes|8912896 bytes|8912896 bytes| 
 |        1        | Std::List   |1519848 bytes |6114808 bytes|  9085040 bytes |
@@ -91,7 +91,7 @@ Failas is 100000 duomenu, atminties panauduojimas:
 
 Failas is 1000000 duomenu, atminties panauduojimas:
 
-|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
+|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiukai|Memory used by kietiakiai|
 |-----------------|-------------|-------------|-------------|--------------|
 |        1        | Std::Vector |142606336 bytes|71303168 bytes|71303168 bytes| 
 |        1        | Std::List   | 123394208 bytes | 49351208 bytesk| 74043000 bytes |
@@ -103,7 +103,7 @@ Failas is 1000000 duomenu, atminties panauduojimas:
 
 Failas is 10000000 duomenu, atminties panauduojimas:
 
-|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiuka|Memory used by kietiakiai|
+|   Strategija    | Konteineris |Memory used by studentai|Memory used by vargsiukai|Memory used by kietiakiai|
 |-----------------|-------------|-------------|-------------|--------------|
 |        1        | Std::Vector |2281701376 bytes|570425344 bytes|1140850688 bytes| 
 |        1        | Std::List   |1519999848 bytes | 607937984 bytes|  912061864 bytes |
