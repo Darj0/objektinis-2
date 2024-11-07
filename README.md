@@ -21,7 +21,7 @@ Diegimo ir paleidimo proceso instrukcija:
 7. "build" direktorijoje atsiras "Sort.exe" failas. Programa galite paleisti paspausdus ant jo arba Terminalo komandineje eiluteje parasykite "./Sort.exe" (pirma karta paleisdami programa ir atlikdami analize reikia butinai generuoti naujus failus)
 
 
-  
+Releases:
 
   
 Release v0.1: Programa nuskaito ivestu studentu (rankiniu budu arba nuskaito iš failo) duomenis ir skaiciuoja galutini ivertinima pagal pasirinkta metoda(nauduojant mediana arba vidurki)  
