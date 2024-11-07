@@ -1,4 +1,7 @@
 # objektinis-programavimas
+
+Ši programa tiria dviejų tipų duomenis – list ir vektor. Nagrinėjamas failų rūšiavimo, kūrimo ir skaitymo greitis, užimtos atminties kiekis. Naudojamos trys skirtingos strategijos.
+
 Naudojimosi instrukcija:
 1. Pasirinkite ar norite ivesti studentus(spauskite 1), nuskaityti is failo(spauskite 2)
 ar stebeti failu nuskaitimo ir kurimo spartuma (spauskite 3).
