@@ -21,10 +21,15 @@ Diegimo ir paleidimo proceso instrukcija:
 7. "build" direktorijoje atsiras "Sort.exe" failas. Programa galite paleisti paspausdus ant jo arba Terminalo komandineje eiluteje parasykite "./Sort.exe" (pirma karta paleisdami programa ir atlikdami analize reikia butinai generuoti naujus failus)
 
 
+  
 
+  
 Release v0.1: Programa nuskaito ivestu studentu (rankiniu budu arba nuskaito iš failo) duomenis ir skaiciuoja galutini ivertinima pagal pasirinkta metoda(nauduojant mediana arba vidurki)  
-Release v0.2: Programa papildomai gali generuoti atsitiktinius studentu failus, dalinti studentus i 2 grupes (kriu ivertinimas >=5 arba <5) ir issaugo i failus sugrupotus studentus. Taip pat atlikita programos veikimo greičio (spartos) analizę. (Daugiausiai laiko uztrunka duomenu nuskaitimas bei rusiavimas, maziausiai - studentu skirstymas i 2 grupes)  
-Release v0.3: Programa papildyta to kad galima pasirinkti nauduoti vektor ar list konteineri studentu saugojimui, atlikita programos veikimo greičio (spartos) analizę naudojant skirtingus konteinerius (Rezultatas: list konteineris efektivesnis, darbas su jo uzima maziau laiko, nes duomenis saugojimi atsitiktinai). Dabar galima matyti kiekvieno studento saugijimo adresa   
+
+Release v0.2: Programa papildomai gali generuoti atsitiktinius studentu failus, dalinti studentus i 2 grupes (kriu ivertinimas >=5 arba <5) ir issaugo i failus sugrupotus studentus. Taip pat atlikita programos veikimo greičio (spartos) analizę. (Daugiausiai laiko uztrunka duomenu nuskaitimas bei rusiavimas, maziausiai - studentu skirstymas i 2 grupes) 
+
+Release v0.3: Programa papildyta to kad galima pasirinkti nauduoti vektor ar list konteineri studentu saugojimui, atlikita programos veikimo greičio (spartos) analizę naudojant skirtingus konteinerius (Rezultatas: list konteineris efektivesnis, darbas su jo uzima maziau laiko, nes duomenis saugojimi atsitiktinai). Dabar galima matyti kiekvieno studento saugijimo adresa  
+
 Release v1.0: Programa papildyta strategijomis. Dalinti studentus i 2 grupes galima 3 strategijomis:  
 1 strategija: Bendro studentai konteinerio (vector ir list tipų) skaidymas į du naujus to paties tipo konteinerius: "vargšiukų" ir "kietiakų"  
 2 strategija: Bendro studentų konteinerio (vector ir list) skaidymas (rūšiavimas) panaudojant tik vieną naują konteinerį: "vargšiukai"  
