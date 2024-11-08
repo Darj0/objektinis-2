@@ -100,18 +100,17 @@ if (strategija == 1)
 
 else if (strategija == 2)
 {
-    for (auto it = studentai.begin(); it != studentai.end(); ) {
-    if (it->galutinis < 5.0) {
-        vargsiukai.push_back(std::move(*it));
-        it = studentai.erase(it);
-    } else {
-        ++it;
-    }
-}
+    auto it = remove_if(studentai.begin(), studentai.end(),
+                              [&vargsiukai](Studentas& studentas) {
+                                  if (studentas.galutinis < 5.0) {
+                                      vargsiukai.push_back(move(studentas));
+                                      return true;
+                                  }
+                                  return false;
+                              });
 
-
-kietiakiai = std::move(studentai);
-
+    studentai.erase(it, studentai.end());
+    kietiakiai = move(studentai);
 }
 
 
