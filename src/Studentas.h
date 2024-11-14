@@ -2,17 +2,103 @@
 #define STUDENTAS_H_INCLUDED
 #include "Mylib.h"
 
-struct Studentas {
+class Studentas {
+private:
     string vardas;
     string pavarde;
     vector<int> nd;
     int egz;
-    double galutinis = 0.0;
+    double galutinis;
     string reikalavimas;
+
+public:
+     Studentas() : vardas(" "), pavarde(" "), egz(0), galutinis(0.0), reikalavimas(" ") {}
+
+
+    Studentas(const string& vardas, const string& pavarde, const vector<int>& nd, int egz, const string& reikalavimas)
+        : vardas(vardas), pavarde(pavarde), nd(nd), egz(egz), reikalavimas(reikalavimas) {
+        galutinis = calculateGalutinis();
+    }
+    const string& getVardas() const { return vardas; }
+    const string& getPavarde() const { return pavarde; }
+    const vector<int>& getNd() const { return nd; }
+    double getGalutinis() const { return galutinis; }
+    int getEgz() const { return egz; }
+    string getReikalavimas() const { return reikalavimas; }
+
+    static string generuoti_varda(int indeksas) {
+        return "Vardas" + to_string(indeksas);
+    }
+
+
+    static string generuoti_pavarde(int indeksas) {
+        return "Pavarde" + to_string(indeksas);
+    }
+
+
+    Studentas(const Studentas& other)
+        : vardas(other.vardas), pavarde(other.pavarde), nd(other.nd), egz(other.egz), galutinis(other.galutinis), reikalavimas(other.reikalavimas) {
+
+    }
+
+
+    ~Studentas() {
+       // cout << "Vadinamas objekto destruktorius " << vardas << " " << pavarde << "." << endl;
+    }
+
+
+    double calculateGalutinis() const {
+        double vidurkis_nd = 0.0;
+        if (!nd.empty()) {
+            vidurkis_nd = accumulate(nd.begin(), nd.end(), 0.0) / nd.size();
+        }
+        return 0.4 * vidurkis_nd + 0.6 * egz;
+    }
+
+   void setReikalavimas(const string& reikalavimas_verte) {
+        reikalavimas = reikalavimas_verte;
+    }
+
+
+    void setGalutinis(double newGalutinis) {
+        galutinis = newGalutinis;
+    }
+
+
+
+
+    void setVardas(const string& vardas) {
+        this->vardas = vardas;
+    }
+
+
+    void setPavarde(const string& pavarde) {
+        this->pavarde = pavarde;
+    }
+
+
+    void setNd(const vector<int>& n) { nd = n; }
+
+    void setNd(const list<int>& n) { nd.assign(n.begin(), n.end()); }
+
+
+    void addNd(int nd_verte) {
+        nd.push_back(nd_verte);
+    }
+
+    void setEgz(int egz_verte) {
+        if (egz_verte >= 1 && egz_verte <= 10) {
+            egz = egz_verte;
+        } else {
+            cout << "Egzamino ivertinimas turi buti nuo 1 iki 10." << endl;
+        }
+    }
+
+
 };
 
-void galutinis_balas_vid(vector<Studentas>& studentai);
-void galutinis_balas_med(vector<Studentas>& studentai);
+//void galutinis_balas_vid(vector<Studentas>& studentai);
+//void galutinis_balas_med(vector<Studentas>& studentai);
 void print_results(const vector<Studentas>& studentai);
 void patikrinimas(vector<Studentas>& studentai);
 void skaityti(vector<Studentas>& studentai, string name, string kriterijus);
@@ -24,10 +110,10 @@ string tolowers(string var);
 
 void print_results_list(const list<Studentas>& studentai_list);
 void duomenys_list(list<Studentas>& studentai_list);
-void galutinis_balas_med_list(list<Studentas>& studentai_list);
-void galutinis_balas_vid_list(list<Studentas>& studentai_list);
-void skaityti_list(list<Studentas>& studentai_list, string name, string kriterijus);
-string exec(const char* cmd);
+//void galutinis_balas_med_list(list<Studentas>& studentai_list);
+//void galutinis_balas_vid_list(list<Studentas>& studentai_list);
+void skaityti_list(list<Studentas>& studentai_list, const string& name, const string& kriterijus);
+//string exec(const char* cmd);
 
 
 
