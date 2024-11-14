@@ -519,7 +519,7 @@ void skaityti(vector<Studentas>& studentai, string name, string kriterijus) {
             string pavarde, vardas;
 
             if (!(iss >> pavarde >> vardas )) {
-                cerr << "Klaida: Netinkamas failo formatas" << endl;
+                cerr << " " << endl;
                 continue;
             }
 
