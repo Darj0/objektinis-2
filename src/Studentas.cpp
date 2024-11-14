@@ -1,122 +1,88 @@
 #include "Studentas.h"
-void galutinis_balas_vid(vector<Studentas>& studentai)
-{
-    for (auto& student : studentai)
-    {
-        double suma = 0;
-        for (int nd : student.nd)
-        {
-            suma += nd;
-        }
-
-        double vidurkis_nd = suma / student.nd.size() ;
-        student.galutinis = (vidurkis_nd*0.4 + student.egz*0.6);
+void galutinis_balas_vid(vector<Studentas>& studentai) {
+    for (auto& student : studentai) {
+        double suma = accumulate(student.getNd().begin(), student.getNd().end(), 0.0);
+        double vidurkis_nd = suma / student.getNd().size();
+        student.setGalutinis(vidurkis_nd * 0.4 + student.getEgz() * 0.6);
+    }
+}
+//---------------------------------------------------
+void galutinis_balas_vid_list(list<Studentas>& studentai_list) {
+    for (auto& student : studentai_list) {
+        double suma = accumulate(student.getNd().begin(), student.getNd().end(), 0.0);
+        double vidurkis_nd = suma / student.getNd().size();
+        student.setGalutinis(vidurkis_nd * 0.4 + student.getEgz() * 0.6);
     }
 }
 
 //---------------------------------------------------
-void galutinis_balas_vid_list(list<Studentas>& studentai_list)
-{
-    for (auto& student : studentai_list)
-    {
-        double suma = 0;
-        for (int nd : student.nd)
-        {
-            suma += nd;
-        }
 
-        double vidurkis_nd = suma / student.nd.size();
-        student.galutinis = (vidurkis_nd * 0.4 + student.egz * 0.6);
-    }
-}
-
-
-
-
-
-
-//---------------------------------------------------
-
-void galutinis_balas_med(vector<Studentas>& studentai)
-{
-   for (auto& student : studentai)
-    {
-
-        sort(student.nd.begin(), student.nd.end());
+void galutinis_balas_med(vector<Studentas>& studentai) {
+    for (auto& student : studentai) {
+        auto nd_copy = student.getNd();
+        sort(nd_copy.begin(), nd_copy.end());
 
         double mediana;
-        int size = student.nd.size();
+        int size = nd_copy.size();
 
-
-        if (size % 2 == 0)
-        {
-            mediana = (student.nd[size / 2 - 1] + student.nd[size / 2]) / 2.0;
+        if (size % 2 == 0) {
+            mediana = (nd_copy[size / 2 - 1] + nd_copy[size / 2]) / 2.0;
+        } else {
+            mediana = nd_copy[size / 2];
         }
 
-        else
-        {
-            mediana = student.nd[size / 2];
-        }
-
-
-        student.galutinis = (mediana * 0.4 + student.egz * 0.6);
+        student.setGalutinis(mediana * 0.4 + student.getEgz() * 0.6);
     }
 }
+
 //-------------------------------------------------------
-void galutinis_balas_med_list(list<Studentas>& studentai_list)
-{
-    for (auto& student : studentai_list)
-    {
-        sort(student.nd.begin(), student.nd.end());
+void galutinis_balas_med_list(list<Studentas>& studentai_list) {
+    for (auto& student : studentai_list) {
+        auto nd_copy = student.getNd();
+        sort(nd_copy.begin(), nd_copy.end());
 
         double mediana;
-        int size = student.nd.size();
+        int size = nd_copy.size();
 
-        if (size % 2 == 0)
-        {
-            mediana = (student.nd[size / 2 - 1] + student.nd[size / 2]) / 2.0;
-        }
-        else
-        {
-            mediana = student.nd[size / 2];
+        if (size % 2 == 0) {
+            mediana = (nd_copy[size / 2 - 1] + nd_copy[size / 2]) / 2.0;
+        } else {
+            mediana = nd_copy[size / 2];
         }
 
-        student.galutinis = (mediana * 0.4 + student.egz * 0.6);
+        student.setGalutinis(mediana * 0.4 + student.getEgz() * 0.6);
     }
 }
 
-
-
 //-------------------------------------------------------
-void print_results(const vector<Studentas>& studentai)
-{
+void print_results(const vector<Studentas>& studentai) {
     cout << left
-         << setw(10) << "Pavarde"
-         << setw(10) << "Vardas"
-         << setw(15) << "Vid."
-         << setw(15) << "Med."
-         << setw(20) << "Adresas"
-         << setw(10) << "Zingsnis" << endl;
+              << setw(15) << "Pavarde"
+              << setw(15) << "Vardas"
+              << setw(15) << "Vid."
+              << setw(15) << "Med."
+              << setw(20) << "Adresas"
+              << setw(10) << "Zingsnis" << endl;
 
     cout << setfill('-')
-         << setw(80) << "-"
-         << setfill(' ') << endl;
+              << setw(80) << "-"
+              << setfill(' ') << endl;
 
     const Studentas* previous_student = nullptr;
 
     for (const auto& studentas : studentai) {
         cout << left
-             << setw(10) << studentas.pavarde
-             << setw(10) << studentas.vardas;
+                  << setw(15) << studentas.getPavarde()
+                  << setw(15) << studentas.getVardas();
 
-        if (studentas.reikalavimas == "vid") {
-            cout << setw(15) << fixed << setprecision(2) << studentas.galutinis
-                 << setw(15) << "-----"
-                 << setw(20) << &studentas;
-        } else if (studentas.reikalavimas == "med") {
+        if (studentas.getReikalavimas() == "vid") {
+            cout << setw(15) << fixed << setprecision(2) << studentas.getGalutinis()
+                      << setw(15) << "-----"
+                      << setw(20) << &studentas;
+        } else if (studentas.getReikalavimas() == "med") {
             cout << setw(15) << "-----"
-                 << setw(15) << fixed << setprecision(2) << studentas.galutinis
-                 << setw(20) << &studentas;
+                      << setw(15) << fixed << setprecision(2) << studentas.getGalutinis()
+                      << setw(20) << &studentas;
         }
 
         if (previous_student) {
@@ -132,39 +98,37 @@ void print_results(const vector<Studentas>& studentai)
 }
 
 //----------------------------------------------------------------------------
-void print_results_list(const list<Studentas>& studentai_list)
-{
+void print_results_list(const list<Studentas>& studentai_list) {
     cout << left
-         << setw(10) << "Pavarde"
-         << setw(10) << "Vardas"
-         << setw(15) << "Vid."
-         << setw(15) << "Med."
-         << setw(20) << "Adresas"
-         << setw(10) << "Zingsnis" << endl;
+              << setw(10) << "Pavarde"
+              << setw(10) << "Vardas"
+              << setw(15) << "Vid."
+              << setw(15) << "Med."
+              << setw(20) << "Adresas"
+              << setw(10) << "Zingsnis" << endl;
 
     cout << setfill('-')
-         << setw(80) << "-"
-         << setfill(' ') << endl;
+              << setw(80) << "-"
+              << setfill(' ') << endl;
 
     const Studentas* previous_student = nullptr;
 
     for (const auto& studentas : studentai_list) {
         cout << left
-             << setw(10) << studentas.pavarde
-             << setw(10) << studentas.vardas;
+                  << setw(10) << studentas.getPavarde()
+                  << setw(10) << studentas.getVardas();
 
-        if (studentas.reikalavimas == "vid") {
-            cout << setw(15) << fixed << setprecision(2) << studentas.galutinis
-                 << setw(15) << "-----"
-                 << setw(20) << &studentas;
-        } else if (studentas.reikalavimas == "med") {
+        if (studentas.getReikalavimas() == "vid") {
+            cout << setw(15) << fixed << setprecision(2) << studentas.getGalutinis()
+                      << setw(15) << "-----"
+                      << setw(20) << &studentas;
+        } else if (studentas.getReikalavimas() == "med") {
             cout << setw(15) << "-----"
-                 << setw(15) << fixed << setprecision(2) << studentas.galutinis
-                 << setw(20) << &studentas;
+                      << setw(15) << fixed << setprecision(2) << studentas.getGalutinis()
+                      << setw(20) << &studentas;
         }
 
         if (previous_student) {
-
             ptrdiff_t zingsnis = abs(reinterpret_cast<const char*>(&studentas) - reinterpret_cast<const char*>(previous_student));
             cout << setw(10) << zingsnis;
         } else {
@@ -208,7 +172,7 @@ int studentuSkaicius;
         cin >> studentuSkaicius;
         if (cin.fail()) {
             cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite tik skaiciu): \n";
         } else {
             break;
@@ -219,11 +183,13 @@ int studentuSkaicius;
     for (int i = 0; i < studentuSkaicius; i++) {
         Studentas naujasStudentas;
         cout << "Iveskite studento varda: ";
-        cin >> naujasStudentas.vardas;
-        naujasStudentas.vardas = capitalize(naujasStudentas.vardas);
+        string vardas;
+        cin >> vardas;
+        naujasStudentas.setVardas(capitalize(vardas));
         cout << "Iveskite studento pavarde: ";
-        cin >> naujasStudentas.pavarde;
-        naujasStudentas.pavarde = capitalize(naujasStudentas.pavarde);
+        string pavarde;
+        cin >> pavarde;
+        naujasStudentas.setPavarde(capitalize(pavarde));
 
         string atsakymas;
         cout << "Ar jau zinote kiek pazymiu noryte ivesti? ('Taip'  'Ne'  'G' - Generuoja pazymius)\n";
@@ -247,7 +213,7 @@ int studentuSkaicius;
             if (cin.fail())
             {
                 cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite tik skaiciu): \n";
             }
             else
@@ -263,12 +229,12 @@ int studentuSkaicius;
 
                         if (cin.fail()) {
                             cin.clear();
-                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
                             cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
                         } else if (nd_verte < 1 || nd_verte > 10) {
                             cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
                         } else {
-                            naujasStudentas.nd.push_back(nd_verte);
+                            naujasStudentas.addNd(nd_verte);
                             break;
                         }
                     }
@@ -289,7 +255,7 @@ int studentuSkaicius;
                 if (cin.fail())
                 {
                     cin.clear();
-                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite tik skaiciu): \n";
                 }
 
@@ -303,7 +269,7 @@ int studentuSkaicius;
                 }
                 else
                 {
-                naujasStudentas.nd.push_back(input);
+                naujasStudentas.addNd(input);
                 }
             }
         }
@@ -314,13 +280,13 @@ int studentuSkaicius;
             cout << "Generuojami " << nd_count << " namu darbu ivertinimai: ";
             for (int j = 0; j < nd_count; j++) {
                 int nd_verte = rand() % 10 + 1;
-                naujasStudentas.nd.push_back(nd_verte);
+                naujasStudentas.addNd(nd_verte);
                 cout << nd_verte << " ";
             }
             cout << endl;
 
-            naujasStudentas.egz = rand() % 10 + 1;
-            cout << "Generuojamas egzamino ivertinimas: " << naujasStudentas.egz << endl;
+            naujasStudentas.setEgz(rand() % 10 + 1);
+            cout << "Generuojamas egzamino ivertinimas: " << naujasStudentas.getEgz() << endl;
         }
 
 
@@ -329,49 +295,55 @@ int studentuSkaicius;
             cout << "Iveskite egzamino ivertinima: ";
             while (true)
                     {
-                        cin >> naujasStudentas.egz;
+                        int egzaminas;
+                        cin >> egzaminas;
 
                         if (cin.fail()) {
-                            cin.clear();
-                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                            cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
-                        } else if (naujasStudentas.egz < 1 || naujasStudentas.egz > 10) {
-                            cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
-                        } else {
-                            naujasStudentas.nd.push_back(naujasStudentas.egz);
-                            break;
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
+                    } else if (egzaminas < 1 || egzaminas > 10) {
+                        cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
+                    } else {
+                        naujasStudentas.setEgz(egzaminas);
+                        break;
                         }
                     }
 
         }
         else{}
 
-        cout << "Galutinio balo skaiciavimui norite naudoti vidurki ar mediana? (Iveskite 'vid' arba 'med'  )"<< endl;
+        cout << "Galutinio balo skaiciavimui norite naudoti vidurki ar mediana? (Iveskite 'vid' arba 'med'  )" << endl;
 
-        cin >> naujasStudentas.reikalavimas;
-        naujasStudentas.reikalavimas = tolowers(naujasStudentas.reikalavimas);
+        string reikalavimas;
+            cin >> reikalavimas;
+            reikalavimas = tolowers(reikalavimas);
 
-        while (naujasStudentas.reikalavimas != "vid" && naujasStudentas.reikalavimas != "med")
-        {
-        cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite vid arba med): ";
-        cin >> naujasStudentas.reikalavimas;
-        naujasStudentas.reikalavimas = tolowers(naujasStudentas.reikalavimas);
-        }
+            naujasStudentas.setReikalavimas(reikalavimas);
 
-        studentai.push_back(naujasStudentas);
+            while (naujasStudentas.getReikalavimas() != "vid" && naujasStudentas.getReikalavimas() != "med") {
+                cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite vid arba med): ";
+                cin >> reikalavimas;
+                reikalavimas = tolowers(reikalavimas);
+
+                naujasStudentas.setReikalavimas(reikalavimas);
+}
+
+
+studentai.push_back(naujasStudentas);
 
 
     }
 
 
    for (auto& studentas : studentai) {
-        if (studentas.reikalavimas == "vid") {
-            galutinis_balas_vid(studentai);
-        } else if (studentas.reikalavimas == "med" ) {
-            galutinis_balas_med(studentai);
-        }
+    if (studentas.getReikalavimas() == "vid") {
+        galutinis_balas_vid(studentai);
+    } else if (studentas.getReikalavimas() == "med") {
+        galutinis_balas_med(studentai);
     }
 
+}
 }
 //----------------------------------------------------
 void duomenys_list(list<Studentas>& studentai_list) {
@@ -389,14 +361,19 @@ void duomenys_list(list<Studentas>& studentai_list) {
         }
     }
 
-    for (int i = 0; i < studentuSkaicius; i++) {
+       for (int i = 0; i < studentuSkaicius; i++) {
         Studentas naujasStudentas;
+
+
+        string vardas;
         cout << "Iveskite studento varda: ";
-        cin >> naujasStudentas.vardas;
-        naujasStudentas.vardas = capitalize(naujasStudentas.vardas);
+        cin >> vardas;
+        naujasStudentas.setVardas(capitalize(vardas));
+
+        string pavarde;
         cout << "Iveskite studento pavarde: ";
-        cin >> naujasStudentas.pavarde;
-        naujasStudentas.pavarde = capitalize(naujasStudentas.pavarde);
+        cin >> pavarde;
+        naujasStudentas.setPavarde(capitalize(pavarde));
 
         string atsakymas;
         cout << "Ar jau zinote kiek pazymiu norite ivesti? ('Taip'  'Ne'  'G' - Generuoja pazymius)\n";
@@ -421,16 +398,17 @@ void duomenys_list(list<Studentas>& studentai_list) {
                 } else {
                     cout << "Iveskite namu darbu ivertinimus (atskiriant ENTER): \n";
                     for (int j = 0; j < nd_count; j++) {
-                        int nd_verte;
-                        while (true) {
-                            cin >> nd_verte;
-                            if (cin.fail() || nd_verte < 1 || nd_verte > 10) {
-                                cin.clear();
-                                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                                cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
-                            } else {
-                                naujasStudentas.nd.push_back(nd_verte);
-                                break;
+                    int nd_verte;
+                    while (true) {
+                        cin >> nd_verte;
+                        if (cin.fail() || nd_verte < 1 || nd_verte > 10) {
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
+                        } else {
+
+                            naujasStudentas.addNd(nd_verte);
+                            break;
                             }
                         }
                     }
@@ -451,7 +429,7 @@ void duomenys_list(list<Studentas>& studentai_list) {
                 } else if (input < 1 || input > 10) {
                     cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
                 } else {
-                    naujasStudentas.nd.push_back(input);
+                    naujasStudentas.addNd(input);
                 }
             }
         } else if (atsakymas == "g") {
@@ -459,58 +437,62 @@ void duomenys_list(list<Studentas>& studentai_list) {
             cout << "Generuojami " << nd_count << " namu darbu ivertinimai: ";
             for (int j = 0; j < nd_count; j++) {
                 int nd_verte = rand() % 10 + 1;
-                naujasStudentas.nd.push_back(nd_verte);
+                naujasStudentas.addNd(nd_verte);
                 cout << nd_verte << " ";
             }
             cout << endl;
-            naujasStudentas.egz = rand() % 10 + 1;
-            cout << "Generuojamas egzamino ivertinimas: " << naujasStudentas.egz << endl;
+            naujasStudentas.setEgz(rand() % 10 + 1);
+            cout << "Generuojamas egzamino ivertinimas: " << naujasStudentas.getEgz() << endl;
         }
 
         if (atsakymas != "g") {
             cout << "Iveskite egzamino ivertinima: ";
             while (true) {
-                cin >> naujasStudentas.egz;
-                if (cin.fail() || naujasStudentas.egz < 1 || naujasStudentas.egz > 10) {
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
-                } else {
-                    break;
+                    int egz_verte;
+                    cin >> egz_verte;
+                    if (cin.fail() || egz_verte < 1 || egz_verte > 10) {
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cout << "Klaida! Iveskite skaiciu nuo 1 iki 10: \n";
+                    } else {
+                        naujasStudentas.setEgz(egz_verte);
+                        break;
                 }
             }
         }
 
         cout << "Galutinio balo skaiciavimui norite naudoti vidurki ar mediana? (Iveskite 'vid' arba 'med')\n";
-        cin >> naujasStudentas.reikalavimas;
-        naujasStudentas.reikalavimas = tolowers(naujasStudentas.reikalavimas);
+        string reikalavimas;
+        cin >> reikalavimas;
+        reikalavimas = tolowers(reikalavimas);
 
-        while (naujasStudentas.reikalavimas != "vid" && naujasStudentas.reikalavimas != "med") {
-            cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite vid arba med): ";
-            cin >> naujasStudentas.reikalavimas;
-            naujasStudentas.reikalavimas = tolowers(naujasStudentas.reikalavimas);
-        }
 
-        studentai_list.push_back(naujasStudentas);
+            while (reikalavimas != "vid" && reikalavimas != "med") {
+                cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite vid arba med): ";
+                cin >> reikalavimas;
+                reikalavimas = tolowers(reikalavimas);
+            }
 
+
+            naujasStudentas.setReikalavimas(reikalavimas);
+
+
+            studentai_list.push_back(naujasStudentas);
     }
 
 
-    for (auto& studentas : studentai_list) {
-        if (studentas.reikalavimas == "vid") {
-            galutinis_balas_vid_list(studentai_list);
-        } else if (studentas.reikalavimas == "med") {
-            galutinis_balas_med_list(studentai_list);
-        }
+            for (auto& studentas : studentai_list) {
+            if (studentas.getReikalavimas() == "vid") {
+                galutinis_balas_vid_list(studentai_list);
+            } else if (studentas.getReikalavimas() == "med") {
+                galutinis_balas_med_list(studentai_list);
+            }
     }
 }
 
 //----------------------------------------------------
 void skaityti(vector<Studentas>& studentai, string name, string kriterijus) {
     ifstream fin;
-
-
-
 
     try {
         fin.open(name);
@@ -526,27 +508,24 @@ void skaityti(vector<Studentas>& studentai, string name, string kriterijus) {
         return;
     }
 
-
-
     try {
-
         string ignore;
         getline(fin, ignore);
         string line;
 
-
         while (getline(fin, line)) {
             istringstream iss(line);
             Studentas stud;
-            string vardas, pavarde;
+            string pavarde, vardas;
 
-            if (!(iss >> vardas >> pavarde)) {
-                cerr << " " << endl;
+            if (!(iss >> pavarde >> vardas )) {
+                cerr << "Klaida: Netinkamas failo formatas" << endl;
                 continue;
             }
 
-            stud.vardas = vardas;
-            stud.pavarde = pavarde;
+
+            stud.setVardas(vardas);
+            stud.setPavarde(pavarde);
 
             int pazymys;
             vector<int> pazymiai;
@@ -555,9 +534,10 @@ void skaityti(vector<Studentas>& studentai, string name, string kriterijus) {
             }
 
             if (!pazymiai.empty()) {
-                stud.egz = pazymiai.back();
+
+                stud.setEgz(pazymiai.back());
                 pazymiai.pop_back();
-                stud.nd = pazymiai;
+                stud.setNd(pazymiai);
             }
 
             studentai.push_back(stud);
@@ -566,15 +546,10 @@ void skaityti(vector<Studentas>& studentai, string name, string kriterijus) {
         fin.close();
     } catch (const ifstream::failure& e) {
         cerr << "Nepavyko nuskaityti failo: " << e.what() << endl;
-        cerr << "Klaida: " << e.what() << endl;
-
-
     }
-    string reikalavimas = kriterijus;
-
 
     for (auto& studentas : studentai) {
-        studentas.reikalavimas = kriterijus;
+        studentas.setReikalavimas(kriterijus);
     }
 
     if (kriterijus == "vid") {
@@ -584,7 +559,7 @@ void skaityti(vector<Studentas>& studentai, string name, string kriterijus) {
     }
 }
 //----------------------------------------------------
-void skaityti_list(list<Studentas>& studentai_list, string name, string kriterijus) {
+void skaityti_list(list<Studentas>& studentai_list, const string& name, const string& kriterijus) {
     ifstream fin;
 
     try {
@@ -612,12 +587,12 @@ void skaityti_list(list<Studentas>& studentai_list, string name, string kriterij
             string vardas, pavarde;
 
             if (!(iss >> vardas >> pavarde)) {
-                cerr << " " << endl;
+                //cerr << "Klaida" << endl;
                 continue;
             }
 
-            stud_list.vardas = vardas;
-            stud_list.pavarde = pavarde;
+            stud_list.setVardas(vardas);
+            stud_list.setPavarde(pavarde);
 
             int pazymys;
             list<int> pazymiai;
@@ -626,9 +601,12 @@ void skaityti_list(list<Studentas>& studentai_list, string name, string kriterij
             }
 
             if (!pazymiai.empty()) {
-                stud_list.egz = pazymiai.back();
+                stud_list.setEgz(pazymiai.back());
                 pazymiai.pop_back();
-                stud_list.nd.assign(pazymiai.begin(), pazymiai.end());
+
+
+                vector<int> pazymiaiVector(pazymiai.begin(), pazymiai.end());
+                stud_list.setNd(pazymiaiVector);
             }
 
             studentai_list.push_back(stud_list);
@@ -637,16 +615,11 @@ void skaityti_list(list<Studentas>& studentai_list, string name, string kriterij
         fin.close();
     } catch (const ifstream::failure& e) {
         cerr << "Nepavyko nuskaityti failo: " << e.what() << endl;
-        cerr << "Klaida: " << e.what() << endl;
     }
-
-    string reikalavimas = kriterijus;
-
 
     for (auto& studentas : studentai_list) {
-        studentas.reikalavimas = kriterijus;
+        studentas.setReikalavimas(kriterijus);
     }
-
 
     if (kriterijus == "vid") {
         galutinis_balas_vid_list(studentai_list);
@@ -654,9 +627,6 @@ void skaityti_list(list<Studentas>& studentai_list, string name, string kriterij
         galutinis_balas_med_list(studentai_list);
     }
 }
-
-
-
 
 
 //------------------------------------------------------
@@ -679,17 +649,19 @@ void patikrinimas(vector<Studentas>& studentai)
 
 
     for (const auto& studentas : studentai) {
+
         cout << left
-             << setw(15) << studentas.pavarde
-             << setw(15) << studentas.vardas;
+             << setw(15) << studentas.getPavarde()
+             << setw(15) << studentas.getVardas();
+
+        const auto& pazymiai = studentas.getNd();
 
 
-        for (const auto& pazymys : studentas.nd) {
-            cout << setw(6) << pazymys;
+        for (size_t i = 0; i < pazymiai.size(); ++i) {
+            cout << setw(6) << pazymiai[i];
         }
 
-
-        cout << setw(10) << studentas.egz << endl;
+        cout << setw(10) << studentas.getEgz() << endl;
     }
 
 
@@ -697,10 +669,10 @@ void patikrinimas(vector<Studentas>& studentai)
 
 //------------------------------------------------------
 bool compare_students(const Studentas& a, const Studentas& b) {
-    if (a.pavarde == b.pavarde) {
-        return a.vardas < b.vardas;
+    if (a.getPavarde() == b.getPavarde()) {
+        return a.getVardas() < b.getVardas();
     }
-    return a.pavarde < b.pavarde;
+    return a.getPavarde() < b.getPavarde();
 }
 //--------------------------------------------------
 
@@ -708,7 +680,7 @@ void sort_students(vector<Studentas>& studentai) {
     sort(studentai.begin(), studentai.end(), compare_students);
 }
 //--------------------------------------------------
-string exec(const char* cmd) {
+/*string exec(const char* cmd) {
     array<char, 128> buffer;
     string result;
     unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
@@ -719,5 +691,5 @@ string exec(const char* cmd) {
         result += buffer.data();
     }
     return result;
-}
+}*/
 
