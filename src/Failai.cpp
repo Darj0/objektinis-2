@@ -8,52 +8,38 @@ void print_memory_usage(const vector<Studentas>& v, const string& name) {
     }
 
 //----------------------------------------------------------------------------
-void print_memory_usage_list(const std::list<Studentas>& lst, const string& name) {
+void print_memory_usage_list(const list<Studentas>& lst, const string& name) {
     size_t node_size = sizeof(Studentas) + 2 * sizeof(void*);
     size_t memory_in_bytes = lst.size() * node_size;
-    std::cout << "Memory used by " << name << ": " << memory_in_bytes << " bytes" << std::endl;
+    cout << "Memory used by " << name << ": " << memory_in_bytes << " bytes" << endl;
 }
 //--------------------------------------------------------------------------------------------
-string generuoti_varda(int indeksas) {
-    return "Vardas" + to_string(indeksas);
-}
-//---------------------------------------------------------
-string generuoti_pavarde(int indeksas) {
-    return "Pavarde" + to_string(indeksas);
-}
-//------------------------------------------------------
-void generuoti_sarasus(int n, vector<Studentas>& studentai)
-{
 
-
-
+void generuoti_sarasus(int n, vector<Studentas>& studentai) {
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> dist(1, 10);
 
-    for (int i = 1; i < n; ++i) {
-        Studentas naujasStudentas;
-        naujasStudentas.vardas = generuoti_varda(i);
-        naujasStudentas.pavarde = generuoti_pavarde(i);
+    for (int i = 1; i <= n; ++i) {
+        string vardas = Studentas::generuoti_varda(i);
+        string pavarde = Studentas::generuoti_pavarde(i);
 
+        vector<int> nd;
         int nd_kiekis = 5;
         for (int j = 0; j < nd_kiekis; ++j) {
-            naujasStudentas.nd.push_back(dist(gen));
+            nd.push_back(dist(gen));
         }
 
-        naujasStudentas.egz = dist(gen);
+        int egz = dist(gen);
 
 
+        Studentas naujasStudentas(vardas, pavarde, nd, egz, "Pateikti projektą");
 
         studentai.push_back(naujasStudentas);
     }
-
-
-
-
 }
 //--------------------------------------------------------
-void kurti_faila(vector<Studentas>& studentai, string failo_priedas)
+void kurti_faila(const vector<Studentas>& studentai, const string& failo_priedas)
 {
     ofstream studentu_failas("studentai_" + failo_priedas + ".txt");
 
@@ -71,26 +57,31 @@ void kurti_faila(vector<Studentas>& studentai, string failo_priedas)
 
     for (const auto& studentas : studentai) {
         studentu_failas << left
-             << setw(15) << studentas.pavarde
-             << setw(15) << studentas.vardas;
+             << setw(15) << studentas.getPavarde()
+             << setw(15) << studentas.getVardas();
 
-        for (const auto& pazymys : studentas.nd) {
-            studentu_failas << setw(6) << pazymys;
+
+        const auto& nd = studentas.getNd();
+        for (size_t i = 0; i <= 5; ++i) {
+            if (i < nd.size()) {
+                studentu_failas << setw(6) << nd[i];
+            } else {
+                studentu_failas << setw(6) << "";
+            }
         }
 
-        studentu_failas << setw(10) << studentas.egz << endl;
+        studentu_failas << setw(10) << studentas.getEgz() << endl;
     }
 
     studentu_failas.close();
 }
-
 //-------------------------------------------
 void rusiavimas_2_grupes( vector<Studentas>& studentai, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakiai, int strategija)
 {
 if (strategija == 1)
 {
      for (const auto& studentas : studentai) {
-        if (studentas.galutinis < 5.0) {
+        if (studentas.getGalutinis() < 5.0) {
             vargsiukai.push_back(studentas);
         } else {
             kietiakiai.push_back(studentas);
@@ -100,25 +91,24 @@ if (strategija == 1)
 
 else if (strategija == 2)
 {
-    for (auto it = studentai.begin(); it != studentai.end(); ) {
-    if (it->galutinis < 5.0) {
-        vargsiukai.push_back(std::move(*it));
-        it = studentai.erase(it);
-    } else {
-        ++it;
-    }
-}
+    auto it = remove_if(studentai.begin(), studentai.end(),
+                              [&vargsiukai](Studentas& studentas) {
+                                  if (studentas.getGalutinis() < 5.0) {
+                                      vargsiukai.push_back(move(studentas));
+                                      return true;
+                                  }
+                                  return false;
+                              });
 
-
-kietiakiai = std::move(studentai);
-
+    studentai.erase(it, studentai.end());
+    kietiakiai = move(studentai);
 }
 
 
 else
 {
      auto it = partition(studentai.begin(), studentai.end(),
-                                [](const Studentas& studentas) { return studentas.galutinis < 5.0; });
+                                [](const Studentas& studentas) { return studentas.getGalutinis() < 5.0; });
 
 
             vargsiukai.assign(make_move_iterator(studentai.begin()), make_move_iterator(it));
@@ -138,7 +128,7 @@ void rusiavimas_2_grupes_list( list<Studentas>& studentai_list, list<Studentas>&
  if (strategija == 1)
  {
      for (const auto& studentas : studentai_list) {
-        if (studentas.galutinis < 5.0) {
+        if (studentas.getGalutinis() < 5.0) {
             vargsiukai_list.push_back(studentas);
         } else {
             kietiakiai_list.push_back(studentas);
@@ -149,7 +139,7 @@ void rusiavimas_2_grupes_list( list<Studentas>& studentai_list, list<Studentas>&
 else if (strategija == 2)
 {
     for (auto it = studentai_list.begin(); it != studentai_list.end(); ) {
-        if (it->galutinis < 5.0) {
+        if (it->getGalutinis() < 5.0) {
 
             vargsiukai_list.push_back(move(*it));
             it = studentai_list.erase(it);
@@ -168,7 +158,7 @@ else if (strategija == 2)
 else if (strategija == 3) {
 
         auto it = partition(studentai_list.begin(), studentai_list.end(), [](const Studentas& s) {
-            return s.galutinis < 5.0;
+            return s.getGalutinis() < 5.0;
         });
 
 
@@ -247,7 +237,7 @@ void darbas_su_failais(string failas, int duom_sk, string reikalavimas, string k
     print_memory_usage(studentai, "studentai");
     print_memory_usage(vargsiukai, "vargsiukai");
     print_memory_usage(kietiakiai, "kietiakiai");
-
+    cout << endl;
 
     vargsiukai.clear();
     kietiakiai.clear();
@@ -321,6 +311,7 @@ void darbas_su_failais_list(string failas, int duom_sk, string reikalavimas, str
     print_memory_usage_list(studentai_list, "studentai_list");
     print_memory_usage_list(vargsiukai_list, "vargsiukai_list");
     print_memory_usage_list(kietiakiai_list, "kietiakiai_list");
+    cout << endl;
 
 
     vargsiukai_list.clear();
@@ -342,8 +333,9 @@ void surusioti_failai(vector<Studentas>& studentai, string name)
     failas << string(60, '-') << endl;
    for (const auto& studentas : studentai) {
         failas << left
-             << setw(20) << studentas.pavarde
-             << setw(20) << studentas.vardas << setw(10) << studentas.galutinis << endl;
+             << setw(20) << studentas.getPavarde()
+             << setw(20) << studentas.getVardas()
+             << setw(10) << studentas.getGalutinis() << endl;
         }
    failas.close();
 }
@@ -354,20 +346,20 @@ void surusioti_failai_list(list<Studentas>& studentai_list, const string& name)
     ofstream failas(name);
 
 
-    failas << std::left
-           << std::setw(20) << "Vardas"
-           << std::setw(20) << "Pavarde"
-           << std::setw(10) << "Galutinis"
-           << std::endl;
-    failas << std::string(60, '-') << std::endl;
+    failas << left
+           << setw(20) << "Vardas"
+           << setw(20) << "Pavarde"
+           << setw(10) << "Galutinis"
+           << endl;
+    failas << string(60, '-') << endl;
 
 
     for (const auto& studentas : studentai_list) {
-        failas << std::left
-               << std::setw(20) << studentas.pavarde
-               << std::setw(20) << studentas.vardas
-               << std::setw(10) << studentas.galutinis
-               << std::endl;
+        failas << left
+               << setw(20) << studentas.getPavarde()
+               << setw(20) << studentas.getVardas()
+               << setw(10) << studentas.getGalutinis()
+               << endl;
     }
 
     failas.close();
@@ -375,18 +367,18 @@ void surusioti_failai_list(list<Studentas>& studentai_list, const string& name)
 
 
 //-----------------------------------------------------------
+// Функция сравнения студентов по имени
 bool compare_by_name(const Studentas& a, const Studentas& b) {
-    return a.vardas < b.vardas;
+    return a.getVardas() < b.getVardas();
 }
-//--------------------------------------------------
+
 
 void sort_students_by_name(vector<Studentas>& studentai) {
     sort(studentai.begin(), studentai.end(), compare_by_name);
 }
-
 //-----------------------------------------------------
 bool compare_by_surname(const Studentas& a, const Studentas& b) {
-    return a.pavarde < b.pavarde;
+    return a.getPavarde() < b.getPavarde();
 }
 //--------------------------------------------------
 
@@ -395,7 +387,7 @@ void sort_students_by_surname(vector<Studentas>& studentai) {
 }
 //-----------------------------------------------------------
 bool compare_by_grade(const Studentas& a, const Studentas& b) {
-    return a.galutinis < b.galutinis;
+    return a.getGalutinis() < b.getGalutinis();
 }
 //--------------------------------------------------
 
