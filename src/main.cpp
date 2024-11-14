@@ -14,7 +14,7 @@ int main() {
         cin >> pasirinkimas;
         if (cin.fail()) {
             cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite tik skaiciu): \n";
         }
         else if (pasirinkimas != 1 && pasirinkimas != 2 && pasirinkimas != 3) {
@@ -172,28 +172,7 @@ int main() {
         darbas_su_failais_list("studentai_10000000.txt", n5, rus, krit, strategija);
         }
 
-
-
-
     }
-
-
-
-/*
-   cout << "\nCPU Info:";
-system("wmic cpu get Name");
-cout << "\nSerdziu skaicius: ";
-system("wmic cpu get NumberOfCores");
-cout << "\nLoginiu procesoriu skaicius: ";
-system("wmic cpu get NumberOfLogicalProcessors");
-cout << "\nTaktine daznis (GHz): ";
-system("wmic cpu get CurrentClockSpeed");
-cout << "\nMemory Info:\n";
-system("wmic memorychip get Capacity");
-cout << "\nDisk Info:\n";
-system("wmic diskdrive get Model,Size");
-
-*/
 
 system("pause");
 
