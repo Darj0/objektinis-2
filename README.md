@@ -8,6 +8,9 @@ Atlikta 1.0 ir 1.1 versijų bendro vykdymo laiko palyginimas su strategija 3 nau
 |     v1.1        | Std::Vector   | 3 |  1.01583 sek| 10.7946 sek | 
 
 
+Eksperimentinė analizė buvo atlikta priklausomai nuo kompiliatoriaus optimizavimo lygio, nurodyto naudojant 01, 02, 03 žymas programoje CodeBlocks.
+
+
 |                    | -01  | -02  | -03  |
 |--------------------|------|------|------|
 | exe failo dydis v1.0 |   139 KB   |   139 KB   |   139 KB   |
@@ -16,3 +19,5 @@ Atlikta 1.0 ir 1.1 versijų bendro vykdymo laiko palyginimas su strategija 3 nau
 | greitis 100000 v1.1  |   1.03555 sek   |  1.01113 sek    |    1.01323 sek   |
 | greitis 1000000 v1.0 | 2.96613 sek     |   2.92903 sek   |    3.06559 sek   |
 | greitis 1000000 v1.1 |   5.47798 sek    |   4.994 sek   |   6.0111 sek   |
+
+
