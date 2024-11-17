@@ -17,7 +17,7 @@ public:
 
     Studentas(const string& vardas, const string& pavarde, const vector<int>& nd, int egz, const string& reikalavimas)
         : vardas(vardas), pavarde(pavarde), nd(nd), egz(egz), reikalavimas(reikalavimas) {
-        galutinis = calculateGalutinis();
+        calculateGalutinis();
     }
     const string& getVardas() const { return vardas; }
     const string& getPavarde() const { return pavarde; }
@@ -43,16 +43,17 @@ public:
 
 
     ~Studentas() {
+        nd.clear();
        // cout << "Vadinamas objekto destruktorius " << vardas << " " << pavarde << "." << endl;
     }
 
 
-    double calculateGalutinis() const {
+    void calculateGalutinis()  {
         double vidurkis_nd = 0.0;
         if (!nd.empty()) {
             vidurkis_nd = accumulate(nd.begin(), nd.end(), 0.0) / nd.size();
         }
-        return 0.4 * vidurkis_nd + 0.6 * egz;
+        galutinis = 0.4 * vidurkis_nd + 0.6 * egz;
     }
 
    void setReikalavimas(const string& reikalavimas_verte) {
