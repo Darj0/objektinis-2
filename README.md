@@ -4,7 +4,7 @@ Atlikta 1.0 ir 1.1 versijų bendro vykdymo laiko palyginimas su strategija 3 nau
 
 |     Versija     | konteineris |     Strategija    |   100000    |   1000000   |
 |-----------------|-------------|-------------|-------------|-------------|
-|     v1.0        | Std::Vector | 3| 0.778585 sekk|  2.96613 sek  | 
+|     v1.0        | Std::Vector | 3| 0.778585 sek|  2.96613 sek  | 
 |     v1.1        | Std::Vector   | 3 |  1.01583 sek| 10.7946 sek | 
 
 
