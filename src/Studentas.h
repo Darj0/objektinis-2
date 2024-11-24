@@ -44,9 +44,19 @@ public:
 
     ~Studentas() {
         nd.clear();
-       // cout << "Vadinamas objekto destruktorius " << vardas << " " << pavarde << "." << endl;
     }
 
+
+    Studentas& operator=(const Studentas& other) {
+    if (this == &other) return *this;
+    vardas = other.vardas;
+    pavarde = other.pavarde;
+    nd = other.nd;
+    egz = other.egz;
+    galutinis = other.galutinis;
+    reikalavimas = other.reikalavimas;
+    return *this;
+}
 
     void calculateGalutinis()  {
         double vidurkis_nd = 0.0;
