@@ -106,6 +106,36 @@ public:
     }
 
 
+     friend istream& operator>>(istream& in, Studentas& s) {
+        cout << "Įveskite vardą: ";
+        in >> s.vardas;
+        cout << "Įveskite pavardę: ";
+        in >> s.pavarde;
+        cout << "Įveskite egzamino pazimi: ";
+        in >> s.egz;
+        s.nd.clear();
+        cout << "Įveskite namų darbų pažymius (spauskite -1, kad baigtumėte): ";
+        int pazymys;
+        while (in >> pazymys && pazymys != -1) {
+            s.nd.push_back(pazymys);
+        }
+        s.calculateGalutinis();
+        return in;
+    }
+
+
+    friend ostream& operator<<(ostream& out, const Studentas& s) {
+        out << "Vardas: " << s.vardas << ", Pavardė: " << s.pavarde << "\n";
+        out << "Egzaminas: " << s.egz << "\n";
+        out << "Namų darbų pažymiai: ";
+        for (int pazymys : s.nd) {
+            out << pazymys << " ";
+        }
+        out << "\nGalutinis: " << fixed << setprecision(2) << s.galutinis << "\n";
+        return out;
+    }
+
+
 };
 
 //void galutinis_balas_vid(vector<Studentas>& studentai);
