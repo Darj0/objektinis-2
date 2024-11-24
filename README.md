@@ -1,4 +1,6 @@
-Versijoje 1.2 Studentu klase patobulinta ir atitinka visiems reikalavimas "Rule of three" (destruktorius, kopijavimo konstruktorius ir kopijavimo priskyrimo operatorius). Realizuoti įvesties/išvesties operatoriai (pateiktas metodu demonstravimas).   Naudojimo, įdiegimo ir paleidimo instrukciją parengiau versijoje 1.0: https://github.com/Darj0/objektinis-programavimas/blob/V1.0/README.md
+Versijoje 1.2 Studentu klase patobulinta ir atitinka visiems reikalavimas "Rule of three" (destruktorius, kopijavimo konstruktorius ir kopijavimo priskyrimo operatorius). Realizuoti įvesties/išvesties operatoriai (pateiktas metodu demonstravimas). Taip pat patobulinta pradine pasirinkimu menu.
+
+Naudojimo, įdiegimo ir paleidimo instrukciją parengiau versijoje 1.0: https://github.com/Darj0/objektinis-programavimas/blob/V1.0/README.md
 
 1.0 ir 1.1 versijų bendro vykdymo laiko palyginima su strategija 3 naudojant 100000 ir 1000000 dydžio failus galima rasti cia: https://github.com/Darj0/objektinis-2/blob/V1.1/README.md
 
