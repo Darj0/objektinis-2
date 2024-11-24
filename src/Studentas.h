@@ -136,6 +136,46 @@ public:
         return out;
     }
 
+    static Studentas generuotiStudenta() {
+        Studentas s;
+        s.vardas = "Vardas" + to_string(rand() % 100 + 1);
+        s.pavarde = "Pavarde" + to_string(rand() % 100 + 1);
+        s.egz = rand() % 10 + 1;
+        int pazymiuKiekis = rand() % 5 + 1;
+        for (int i = 0; i < pazymiuKiekis; ++i) {
+            s.nd.push_back(rand() % 10 + 1);
+        }
+        s.calculateGalutinis();
+        return s;
+    }
+
+
+    static vector<Studentas> nuskaitytiIsFailo(const string& failoVardas) {
+        ifstream failas(failoVardas);
+        vector<Studentas> studentai;
+        if (!failas) {
+            cerr << "Nepavyko atidaryti failo: " << failoVardas << endl;
+            return studentai;
+        }
+        Studentas s;
+        while (failas >> s) {
+            studentai.push_back(s);
+        }
+        failas.close();
+        return studentai;
+    }
+    static void rasytiIFaila(const vector<Studentas>& studentai, const string& failoVardas) {
+        ofstream failas(failoVardas);
+        if (!failas) {
+            cerr << "Nepavyko sukurti failo: " << failoVardas << endl;
+            return;
+        }
+        for (const auto& s : studentai) {
+            failas << s << endl;
+        }
+        failas.close();
+    }
+
 
 };
 
