@@ -44,7 +44,7 @@ public:
 
     ~Studentas() {
         nd.clear();
-        cout << "Objekto destruktorius kvieciamas " << vardas << " " << pavarde << " objektui." << std::endl;
+        //cout << "Objekto destruktorius kvieciamas " << vardas << " " << pavarde << " objektui." << std::endl;
     }
 
 
