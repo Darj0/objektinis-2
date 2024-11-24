@@ -195,7 +195,7 @@ int main() {
         cout << "Trecio studento duomenys (priskirti is pirmo studento):\n";
         cout << studentas3;
 
-        cout << "\nDemonstracija: Keičiamas egzaminų rezultatas ir galutinis balas"<<endl;
+        cout << "\nDemonstracija: Keiciamas egzaminu rezultatas ir galutinis balas"<<endl;
         studentas3.setEgz(9);
         studentas3.calculateGalutinis();
         cout << "Trecio studento duomenys po egzamino rezultato pakeitimo:\n";
