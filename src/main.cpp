@@ -10,15 +10,15 @@ int main() {
     string reikalavimas;
 
     while (true) {
-        cout << "Norite ivesti studentus(spauskite 1), nuskaityti is failo(spauskite 2)\nar stebeti failu nuskaitimo ir kurimo spartuma (spauskite 3)?\n";
+        cout << "Norite ivesti studentus(spauskite 1), nuskaityti is failo(spauskite 2), \nstebeti failu nuskaitimo ir kurimo spartuma (spauskite 3) \nar pamatyti 'rule of three' demonstracja (spauskite 4)?";
         cin >> pasirinkimas;
         if (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite tik skaiciu): \n";
         }
-        else if (pasirinkimas != 1 && pasirinkimas != 2 && pasirinkimas != 3) {
-            cout << "Klaida! Iveskite 1 arba 2: \n";
+        else if (pasirinkimas != 1 && pasirinkimas != 2 && pasirinkimas != 3 && pasirinkimas != 4) {
+            cout << "Klaida! Iveskite 1, 2, 3 arba 4: \n";
         }
         else {
             break;
@@ -68,7 +68,7 @@ int main() {
         sort_students(studentai);
         print_results(studentai);
     }
-    else {
+    else if (pasirinkimas == 3){
         int n1 = 1000;
         int n2 = 10000;
         int n3 = 100000;
@@ -171,6 +171,36 @@ int main() {
         darbas_su_failais_list("studentai_1000000.txt", n4, rus, krit, strategija);
         darbas_su_failais_list("studentai_10000000.txt", n5, rus, krit, strategija);
         }
+
+    }
+
+    else if (pasirinkimas == 4)
+    {
+        Studentas studentas1;
+        cout << "Iveskite pirmo studento duomenis:\n";
+        cin >> studentas1;
+
+        cout << "Demonstracija: Spausdiname studento informacija naudojant operator<<"<<endl;
+        cout << "Pirmo studento duomenys:\n";
+        cout << studentas1;
+
+        cout<< "\nDemonstracija: Kopijavimo konstruktorius (Sukuriame nauja objekta kaip kopija)"<<endl;
+        Studentas studentas2 = studentas1;
+        cout << "Antro studento duomenys (kopijuoti is pirmo studento):\n";
+        cout << studentas2;
+
+        cout<<"\nDemonstracija: Kopijavimo priskyrimo operatorius (Priskiriame pirmojo studento duomenis treciam studentui)"<<endl;
+        Studentas studentas3;
+        studentas3 = studentas1;
+        cout << "Trecio studento duomenys (priskirti is pirmo studento):\n";
+        cout << studentas3;
+
+        cout << "\nDemonstracija: Keičiamas egzaminų rezultatas ir galutinis balas"<<endl;
+        studentas3.setEgz(9);
+        studentas3.calculateGalutinis();
+        cout << "Trecio studento duomenys po egzamino rezultato pakeitimo:\n";
+        cout << studentas3;
+
 
     }
 
