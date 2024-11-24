@@ -2,6 +2,18 @@
 #include "Studentas.h"
 #include "Failai.h"
 
+void menu() {
+    cout << "============================\n";
+    cout << "Pasirinkite veiksma:\n";
+    cout << "1. Ivesti studentus rankiniu budu\n";
+    cout << "2. Nuskaityti studentus is failo\n";
+    cout << "3. Stebeti failu nuskaitymo ir kurimo spartuma\n";
+    cout << "4. Pamatyti 'Rule of Three' demonstracija\n";
+    cout << "0. Iseiti\n";
+    cout << "============================\n";
+    cout << "Jusu pasirinkimas: ";
+}
+
 int main() {
     vector<Studentas> studentai;
     list<Studentas> studentai_list;
@@ -10,19 +22,40 @@ int main() {
     string reikalavimas;
 
     while (true) {
-        cout << "Norite ivesti studentus(spauskite 1), nuskaityti is failo(spauskite 2), \nstebeti failu nuskaitimo ir kurimo spartuma (spauskite 3) \nar pamatyti 'rule of three' demonstracja (spauskite 4)?";
+        menu();
+
         cin >> pasirinkimas;
+
+        // Tikriname, ar įvestas skaičius yra tinkamas
         if (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Klaidingas ivedimas, bandykite dar karta (Iveskite tik skaiciu): \n";
+            cout << "\nKlaidingas įvedimas, bandykite dar kartą (Įveskite tik skaičių):\n\n";
         }
-        else if (pasirinkimas != 1 && pasirinkimas != 2 && pasirinkimas != 3 && pasirinkimas != 4) {
-            cout << "Klaida! Iveskite 1, 2, 3 arba 4: \n";
+        else if (pasirinkimas != 1 && pasirinkimas != 2 && pasirinkimas != 3 && pasirinkimas != 4 && pasirinkimas != 0) {
+            cout << "\nKlaida! Įveskite 1, 2, 3, 4 arba 0:\n\n";
         }
         else {
-            break;
+            break;  // Išeina iš while ciklo, jei pasirinkimas galiojantis
         }
+    }
+
+    switch (pasirinkimas) {
+        case 1:
+            // Rankinė duomenų įvestis
+            break;
+        case 2:
+            // Nuskaitymas iš failo
+            break;
+        case 3:
+            // Failų spartumo stebėjimas
+            break;
+        case 4:
+            // 'Rule of Three' demonstracija
+            break;
+        case 0:
+            cout << "Programa baigta." << endl;
+            break;
     }
 
     if (pasirinkimas == 1) {
