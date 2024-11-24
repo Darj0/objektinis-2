@@ -44,6 +44,7 @@ public:
 
     ~Studentas() {
         nd.clear();
+        cout << "Objekto destruktorius kvieciamas " << vardas << " " << pavarde << " objektui." << std::endl;
     }
 
 
@@ -107,14 +108,14 @@ public:
 
 
      friend istream& operator>>(istream& in, Studentas& s) {
-        cout << "Įveskite vardą: ";
+        cout << "Iveskite varda: ";
         in >> s.vardas;
-        cout << "Įveskite pavardę: ";
+        cout << "Iveskite pavarde: ";
         in >> s.pavarde;
-        cout << "Įveskite egzamino pazimi: ";
+        cout << "Iveskite egzamino pazimi: ";
         in >> s.egz;
         s.nd.clear();
-        cout << "Įveskite namų darbų pažymius (spauskite -1, kad baigtumėte): ";
+        cout << "Iveskite namu darbu pazymius (spauskite -1, kad baigti): ";
         int pazymys;
         while (in >> pazymys && pazymys != -1) {
             s.nd.push_back(pazymys);
@@ -125,9 +126,9 @@ public:
 
 
     friend ostream& operator<<(ostream& out, const Studentas& s) {
-        out << "Vardas: " << s.vardas << ", Pavardė: " << s.pavarde << "\n";
+        out << "Vardas: " << s.vardas << ", Pavarde: " << s.pavarde << "\n";
         out << "Egzaminas: " << s.egz << "\n";
-        out << "Namų darbų pažymiai: ";
+        out << "Namu darbu pazymiai: ";
         for (int pazymys : s.nd) {
             out << pazymys << " ";
         }
