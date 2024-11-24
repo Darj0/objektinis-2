@@ -115,9 +115,9 @@ public:
         cout << "Iveskite egzamino pazimi: ";
         in >> s.egz;
         s.nd.clear();
-        cout << "Iveskite namu darbu pazymius (spauskite -1, kad baigti): ";
+        cout << "Iveskite namu darbu pazymius (spauskite 0, kad baigti): ";
         int pazymys;
-        while (in >> pazymys && pazymys != -1) {
+        while (in >> pazymys && pazymys != 0) {
             s.nd.push_back(pazymys);
         }
         s.calculateGalutinis();
