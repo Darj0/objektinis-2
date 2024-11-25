@@ -208,34 +208,53 @@ int main() {
     }
 
     else if (pasirinkimas == 4)
-    {
-        Studentas studentas1;
-        cout << "Iveskite pirmo studento duomenis:\n";
-        cin >> studentas1;
+{
+    Studentas studentas1;
+    cout << "Iveskite pirmo studento duomenis:\n";
+    cin >> studentas1;
 
-        cout << "Demonstracija: Spausdiname studento informacija naudojant operator<<"<<endl;
-        cout << "Pirmo studento duomenys:\n";
-        cout << studentas1;
+    cout << "\n=== Demonstracija: Pirmo studento duomenys ===\n";
+    cout << "Pradiniai pirmo studento duomenys:\n";
+    cout << studentas1;
 
-        cout<< "\nDemonstracija: Kopijavimo konstruktorius (Sukuriame nauja objekta kaip kopija)"<<endl;
-        Studentas studentas2 = studentas1;
-        cout << "Antro studento duomenys (kopijuoti is pirmo studento):\n";
-        cout << studentas2;
+    cout << "\n=== Demonstracija: Kopijavimo konstruktorius (Sukuriame nauja objekta kaip kopija) ===\n";
+    Studentas studentas2 = studentas1; 
+    cout << "Antro studento duomenys (kopijuoti is pirmo studento):\n";
+    cout << "studentas2 = studentas1\n";
+    cout << "Antras studentas turetu buti lygus pirmajam studentui:\n";
+    cout << studentas2;
 
-        cout<<"\nDemonstracija: Kopijavimo priskyrimo operatorius (Priskiriame pirmojo studento duomenis treciam studentui)"<<endl;
-        Studentas studentas3;
-        studentas3 = studentas1;
-        cout << "Trecio studento duomenys (priskirti is pirmo studento):\n";
-        cout << studentas3;
+    cout << "\n=== Modifikuojame antro studento varda (kopija) ===\n";
+    studentas2.setVardas("NaujasVardas"); 
+    cout << "Antro studento duomenys po vardo pakeitimo:\n";
+    cout << studentas2;
 
-        cout << "\nDemonstracija: Keiciamas egzaminu rezultatas ir galutinis balas"<<endl;
-        studentas3.setEgz(9);
-        studentas3.calculateGalutinis();
-        cout << "Trecio studento duomenys po egzamino rezultato pakeitimo:\n";
-        cout << studentas3;
+    cout << "\n=== Demonstracija: Kopijavimo priskyrimo operatorius (Priskiriame pirmojo studento duomenis treciam studentui) ===\n";
+    Studentas studentas3;
+    studentas3 = studentas1; 
+    cout << "Trecio studento duomenys (priskirti is pirmo studento):\n";
+    cout << "studentas3 = studentas1\n";
+    cout << studentas3;
 
+    cout << "\n=== Demonstracija: Modifikuojame trecio studento varda ===\n";
+    studentas3.setVardas("TreciasVardas"); 
+    cout << "Trecio studento duomenys po vardo pakeitimo:\n";
+    cout << studentas3;
 
-    }
+    cout << "\n=== Tikriname skirtumus tarp studento duomenu ===\n";
+    cout << "Pirmo studento duomenys (nepakeisti):\n";
+    cout << studentas1;
+    cout << "Antro studento duomenys (kopijuoti is pirmo studento, bet pakeistas vardas):\n";
+    cout << studentas2;
+    cout << "Trecio studento duomenys (priskirti is pirmo studento, bet pakeistas vardas):\n";
+    cout << studentas3;
+
+    cout << "\n=== Demonstracija: Studentas irasomas i faila \"studentas3.txt\" ===\n";
+    Studentas::rasytiIFaila(studentas3, "studentas3.txt");
+
+    cout << "\nVisos demonstracijos baigtos.\n";
+}
+
 
 system("pause");
 
