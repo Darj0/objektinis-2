@@ -2,7 +2,33 @@
 #define STUDENTAS_H_INCLUDED
 #include "Mylib.h"
 
-class Studentas {
+class Zmogus {
+protected:
+    string vardas;
+    string pavarde;
+
+public:
+    Zmogus() : vardas(" "), pavarde(" ") {}
+
+    Zmogus(const string& vardas, const string& pavarde)
+        : vardas(vardas), pavarde(pavarde) {}
+
+    virtual ~Zmogus() {}
+
+    
+    //virtual void spausdintiInformacija() const = 0; 
+   // virtual string gautiTipa() const = 0;          
+
+    string getVardas() const { return vardas; }
+    string getPavarde() const { return pavarde; }
+
+    
+    void setVardas(const string& v) { vardas = v; }
+    void setPavarde(const string& p) { pavarde = p; }
+};
+
+
+class Studentas : public Zmogus {
 private:
     string vardas;
     string pavarde;
@@ -12,11 +38,11 @@ private:
     string reikalavimas;
 
 public:
-     Studentas() : vardas(" "), pavarde(" "), egz(0), galutinis(0.0), reikalavimas(" ") {}
+     Studentas() : Zmogus(), egz(0), galutinis(0.0), reikalavimas(" ") {}
 
 
     Studentas(const string& vardas, const string& pavarde, const vector<int>& nd, int egz, const string& reikalavimas)
-        : vardas(vardas), pavarde(pavarde), nd(nd), egz(egz), reikalavimas(reikalavimas) {
+        : Zmogus(), nd(nd), egz(egz), reikalavimas(reikalavimas) {
         calculateGalutinis();
     }
     const string& getVardas() const { return vardas; }
@@ -164,17 +190,15 @@ public:
         failas.close();
         return studentai;
     }
-    static void rasytiIFaila(const vector<Studentas>& studentai, const string& failoVardas) {
-        ofstream failas(failoVardas);
-        if (!failas) {
-            cerr << "Nepavyko sukurti failo: " << failoVardas << endl;
-            return;
-        }
-        for (const auto& s : studentai) {
-            failas << s << endl;
-        }
-        failas.close();
+     static void rasytiIFaila(const Studentas& studentas, const string& failoVardas) {
+    ofstream failas(failoVardas);
+    if (!failas) {
+        cerr << "Nepavyko sukurti failo: " << failoVardas << endl;
+        return;
     }
+    failas << studentas;
+    failas.close();
+}
 
 
 };
