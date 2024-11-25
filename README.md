@@ -18,16 +18,13 @@ Studenta galima isvesti i faila (Metodo iskvietimo komandos: cin >> failoVardas;
 
 "Rule of three" metodu demonstravimas:  
 
-![image](https://github.com/user-attachments/assets/45c164d8-643d-4f48-a8c3-9a413c3e3a40)
+![image](https://github.com/user-attachments/assets/2b5392ad-f5e1-402b-96a1-0bbf74718059)
 
-![image](https://github.com/user-attachments/assets/e27784ac-3f0c-4e40-ba73-beeb6df928df)
+![image](https://github.com/user-attachments/assets/50d75cec-7ce2-4387-ab47-6a15d212f38b)
 
-![image](https://github.com/user-attachments/assets/0115155a-ade0-4fe1-b7a9-f3375443789b)
+![image](https://github.com/user-attachments/assets/6de501b2-836f-4930-9e28-2f4796cc1f9e)
 
-![image](https://github.com/user-attachments/assets/583228b4-d40e-4f98-b7b1-3b7df58cdf18)
-
-
-
+![image](https://github.com/user-attachments/assets/52735c77-9a79-474c-9a9a-33926ba1560c)
 
 
 
