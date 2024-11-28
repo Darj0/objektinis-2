@@ -15,6 +15,17 @@ public:
 
     virtual ~Zmogus() {}
 
+    Zmogus& operator=(const Zmogus& other) {
+        if (this != &other) {
+            vardas = other.vardas;
+            pavarde = other.pavarde;
+        }
+        return *this;
+    }
+
+    Zmogus(const Zmogus& other)
+        : vardas(other.vardas), pavarde(other.pavarde) {}
+
 
     virtual void spausdintiInformacija() const = 0;
    // virtual string gautiTipa() const = 0;
