@@ -9,6 +9,7 @@ void menu() {
     cout << "2. Nuskaityti studentus is failo\n";
     cout << "3. Stebeti failu nuskaitymo ir kurimo spartuma\n";
     cout << "4. Pamatyti 'Rule of Three' demonstracija\n";
+    cout << "5. Bazines ir isvestines klasiu objektu kurimas\n";
     cout << "0. Iseiti\n";
     cout << "============================\n";
     cout << "Jusu pasirinkimas: ";
@@ -26,32 +27,36 @@ int main() {
 
         cin >> pasirinkimas;
 
-        // Tikriname, ar įvestas skaičius yra tinkamas
+
         if (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "\nKlaidingas įvedimas, bandykite dar kartą (Įveskite tik skaičių):\n\n";
         }
-        else if (pasirinkimas != 1 && pasirinkimas != 2 && pasirinkimas != 3 && pasirinkimas != 4 && pasirinkimas != 0) {
-            cout << "\nKlaida! Įveskite 1, 2, 3, 4 arba 0:\n\n";
+        else if (pasirinkimas != 1 && pasirinkimas != 2 && pasirinkimas != 3 && pasirinkimas != 4 && pasirinkimas != 5 && pasirinkimas != 0) {
+            cout << "\nKlaida! Įveskite 1, 2, 3, 4, 5 arba 0:\n\n";
         }
         else {
-            break;  // Išeina iš while ciklo, jei pasirinkimas galiojantis
+            break;
         }
     }
 
     switch (pasirinkimas) {
         case 1:
-            // Rankinė duomenų įvestis
+
             break;
         case 2:
-            // Nuskaitymas iš failo
+
             break;
         case 3:
-            // Failų spartumo stebėjimas
+
             break;
         case 4:
-            // 'Rule of Three' demonstracija
+
+            break;
+
+        case 5:
+
             break;
         case 0:
             cout << "Programa baigta." << endl;
@@ -209,35 +214,52 @@ int main() {
 
     else if (pasirinkimas == 4)
 {
+    cout <<"Norite ivesti studenta rankiniu budu (1), generuoti duomenis (2)?"<<endl;
+    int a;
     Studentas studentas1;
-    cout << "Iveskite pirmo studento duomenis:\n";
-    cin >> studentas1;
+    cin >> a ;
+    if (a == 1)
+    {
+
+        cout << "Iveskite pirmo studento duomenis:\n";
+        cin >> studentas1;
+
+    }
+    else if (a == 2)
+    {
+        studentas1 = Studentas::generuotiStudenta();
+        cout << "Studentas sugeneruotas\n";
+    }
+
+
+
+
 
     cout << "\n=== Demonstracija: Pirmo studento duomenys ===\n";
     cout << "Pradiniai pirmo studento duomenys:\n";
     cout << studentas1;
 
     cout << "\n=== Demonstracija: Kopijavimo konstruktorius (Sukuriame nauja objekta kaip kopija) ===\n";
-    Studentas studentas2 = studentas1; 
+    Studentas studentas2 = studentas1;
     cout << "Antro studento duomenys (kopijuoti is pirmo studento):\n";
     cout << "studentas2 = studentas1\n";
     cout << "Antras studentas turetu buti lygus pirmajam studentui:\n";
     cout << studentas2;
 
     cout << "\n=== Modifikuojame antro studento varda (kopija) ===\n";
-    studentas2.setVardas("NaujasVardas"); 
+    studentas2.setVardas("NaujasVardas");
     cout << "Antro studento duomenys po vardo pakeitimo:\n";
     cout << studentas2;
 
     cout << "\n=== Demonstracija: Kopijavimo priskyrimo operatorius (Priskiriame pirmojo studento duomenis treciam studentui) ===\n";
     Studentas studentas3;
-    studentas3 = studentas1; 
+    studentas3 = studentas1;
     cout << "Trecio studento duomenys (priskirti is pirmo studento):\n";
     cout << "studentas3 = studentas1\n";
     cout << studentas3;
 
     cout << "\n=== Demonstracija: Modifikuojame trecio studento varda ===\n";
-    studentas3.setVardas("TreciasVardas"); 
+    studentas3.setVardas("TreciasVardas");
     cout << "Trecio studento duomenys po vardo pakeitimo:\n";
     cout << studentas3;
 
@@ -253,7 +275,17 @@ int main() {
     Studentas::rasytiIFaila(studentas3, "studentas3.txt");
 
     cout << "\nVisos demonstracijos baigtos.\n";
+
 }
+
+ else if (pasirinkimas == 5) {
+    Studentas studentas1("Jonas", "Jonaitis", {8, 9, 10}, 9, "Studentas");
+
+    cout << "Sukurtas Studentas objektas ir jo duomenys:\n";
+    cout << studentas1;
+
+    //Zmogus zmogus;
+    }
 
 
 system("pause");
