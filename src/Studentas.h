@@ -15,14 +15,14 @@ public:
 
     virtual ~Zmogus() {}
 
-    
-    //virtual void spausdintiInformacija() const = 0; 
-   // virtual string gautiTipa() const = 0;          
+
+    virtual void spausdintiInformacija() const = 0;
+   // virtual string gautiTipa() const = 0;
 
     string getVardas() const { return vardas; }
     string getPavarde() const { return pavarde; }
 
-    
+
     void setVardas(const string& v) { vardas = v; }
     void setPavarde(const string& p) { pavarde = p; }
 };
@@ -30,8 +30,8 @@ public:
 
 class Studentas : public Zmogus {
 private:
-    string vardas;
-    string pavarde;
+   // string vardas;
+    //string pavarde;
     vector<int> nd;
     int egz;
     double galutinis;
@@ -42,9 +42,10 @@ public:
 
 
     Studentas(const string& vardas, const string& pavarde, const vector<int>& nd, int egz, const string& reikalavimas)
-        : Zmogus(), nd(nd), egz(egz), reikalavimas(reikalavimas) {
-        calculateGalutinis();
-    }
+    : Zmogus(vardas, pavarde), nd(nd), egz(egz), reikalavimas(reikalavimas) {
+    calculateGalutinis();
+}
+
     const string& getVardas() const { return vardas; }
     const string& getPavarde() const { return pavarde; }
     const vector<int>& getNd() const { return nd; }
@@ -63,7 +64,7 @@ public:
 
 
     Studentas(const Studentas& other)
-        : vardas(other.vardas), pavarde(other.pavarde), nd(other.nd), egz(other.egz), galutinis(other.galutinis), reikalavimas(other.reikalavimas) {
+        : Zmogus(other.getVardas(), other.getPavarde()), nd(other.nd), egz(other.egz), galutinis(other.galutinis), reikalavimas(other.reikalavimas) {
 
     }
 
@@ -173,6 +174,16 @@ public:
         }
         s.calculateGalutinis();
         return s;
+    }
+
+    void spausdintiInformacija() const override {
+        cout << "Vardas: " << getVardas() << ", Pavarde: " << getPavarde() << "\n";
+        cout << "Egzaminas: " << egz << "\n";
+        cout << "Namu darbu pazymiai: ";
+        for (int pazymys : nd) {
+            cout << pazymys << " ";
+        }
+        cout << "\nGalutinis: " << fixed << setprecision(2) << galutinis << "\n";
     }
 
 
