@@ -11,7 +11,8 @@ Naudojimo, įdiegimo ir paleidimo instrukciją parengiau versijoje 1.0: https://
 "Rule of three" metodu demonstravimas:  https://github.com/Darj0/objektinis-2/blob/V1.2/README.md
 
 Objektus galima kurti tik su isvestine Studento klase, pabandzius kurti objektus su bazine Zmogaus klase pamatysite kompiliavimo klaida:
-![image](https://github.com/user-attachments/assets/af483bb1-1589-4e2e-8f68-b1d13ccfc88f)
+![image](https://github.com/user-attachments/assets/8331cab5-dcc5-4a0a-bb94-59eaf4b9891d)
+
 
 
 Programa veiks kol Zmogaus objekto kurimas uzkomentuotas:
