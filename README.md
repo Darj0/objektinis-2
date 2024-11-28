@@ -15,6 +15,6 @@ Objektus galima kurti tik su isvestine Studento klase, pabandzius kurti objektus
 
 
 
-Programa veiks kol Zmogaus objekto kurimas uzkomentuotas:     **Zmogus zmogus("Vardas", "Pavarde");**
+Programa veiks kol Zmogaus objekto kurimas uzkomentuotas:     **//Zmogus zmogus("Vardas", "Pavarde");**
 
 Norint isitikinti kad Zmogaus klases objektu kurimas neimanomas istrinkite komentarus faile "main.cpp" 287 eiluteje (Istrinti: //)
