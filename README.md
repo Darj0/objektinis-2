@@ -1,5 +1,5 @@
 Versijoje 1.5 sukurta bazine klase "Zmogus"  (atitinka visiems reikalavimas "Rule of three"). Klase Studentas tapo isvestine
-
+Patobulintas menu (pridetas 5 punktas (objektu kurimo demonstravimas))
 Naudojimo, įdiegimo ir paleidimo instrukciją parengiau versijoje 1.0: https://github.com/Darj0/objektinis-programavimas/blob/V1.0/README.md
 
 1.0 ir 1.1 versijų bendro vykdymo laiko palyginima su strategija 3 naudojant 100000 ir 1000000 dydžio failus galima rasti cia: https://github.com/Darj0/objektinis-2/blob/V1.1/README.md
