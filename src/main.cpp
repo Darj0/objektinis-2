@@ -284,7 +284,7 @@ int main() {
     cout << "Sukurtas Studentas objektas ir jo duomenys:\n";
     cout << studentas1;
 
-    //Zmogus zmogus;
+//    Zmogus zmogus("Jonas", "Jonaitis");
     }
 
 
